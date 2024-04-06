@@ -1,6 +1,8 @@
 
 # FinalProject TODO ✈️✈️🐝🐝
 
+Stef was here
+
 ## (7+) Pages
 * [ ] HomePage 📄
 * [ ] ErrorPage 📄
