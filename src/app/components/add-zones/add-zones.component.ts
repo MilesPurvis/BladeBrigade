@@ -1,66 +1,107 @@
 import {Component, inject} from '@angular/core';
 import {GeoService} from "../../services/geo.service";
+import {FormsModule} from "@angular/forms";
+import {ZoneDalService} from "../../services/zone-dal.service";
+import {Zone} from "../../models/zone.model";
 
-declare const H:any;
+declare const H: any;
+
 @Component({
   selector: 'app-add-zones',
   standalone: true,
-  imports: [],
+  imports: [
+    FormsModule
+  ],
   templateUrl: './add-zones.component.html',
   styleUrl: './add-zones.component.css'
 })
 export class AddZonesComponent {
-geoService = inject(GeoService);
-position:any;
-error:any;
+  geoService = inject(GeoService);
+  dal = inject(ZoneDalService)
 
-lat:any;
-lon:any;
+  zone:Zone = new Zone("123 street","S",5)
 
-getLocationOnclick(){
-  this.geoService.getCurrentLocation().then((data)=>{
-    console.log(data)
-    this.position = data;
-    this.lat = data.lat;
-    this.lon = data.lon;
-    this.error = "";
-    this.showMap();
-  }).catch(err=>{})
-}
+  position: any;
+  error: any;
 
-public showMap(){
-  console.log("Showing Map: ")
-  document.getElementById("mapContainer")!.innerHTML='';
+  lat: any;
+  lon: any;
 
-  //init the platform obj
-  var platform = new H.service.Platform({
-    'apikey':'cU638kKX9v40v8qGZfXBEwk8OFEBSoPKIz3lyA03o_g'
-  })
+  selectedOption: string;
+  mapIcon: any;
 
-  var mapTypes = platform.createDefaultLayers();
+  constructor() {
+    this.selectedOption = ""
+  }
 
-  var options = {
-    zoom:14,
-    center:{
-      lat:this.lat,lng:this.lon
+  onAddClick(){
+    this.dal.insert(this.zone).then((data)=>{
+      console.log(data);
+      alert("Record added successfully")
+    }).catch(e=>{
+      console.error("Error" + e.message)
+    })
+  }
+  onOptionChange(event: any) {
+    this.selectedOption = event.target.value;
+
+    if (this.selectedOption == "none") {
+      this.mapIcon = new H.map.Icon('assets/img/default.png');
+    }else if(this.selectedOption == "S"){
+      this.mapIcon = new H.map.Icon('assets/img/SafeZone.png');
+    }else if(this.selectedOption == "L"){
+      this.mapIcon = new H.map.Icon('assets/img/SafeZone2.png');
     }
-  };
 
-  var map = new H.Map(
-    document.getElementById('mapContainer'),
-    mapTypes.vector.normal.map,
-    options
-  );
+    this.showMap()
+  }
 
-  var md = new H.map.Icon('assets/img/SafeZone2.png')
+  getLocationOnclick() {
+    this.geoService.getCurrentLocation().then((data) => {
+      console.log(data)
+      this.position = data;
+      this.lat = data.lat;
+      this.lon = data.lon;
+      this.error = "";
+      this.showMap();
+    }).catch(err => {
+    })
+  }
 
-  var icon = new H.map.Icon('assets/img/SafeZone.png');
+  public showMap() {
+    console.log("Showing Map: ")
+    document.getElementById("mapContainer")!.innerHTML = '';
 
-  var marker = new H.map.Marker({
-    lat:this.lat,lng:this.lon
-  },{icon:icon})
+    //init the platform obj
+    var platform = new H.service.Platform({
+      'apikey': 'cU638kKX9v40v8qGZfXBEwk8OFEBSoPKIz3lyA03o_g'
+    })
 
-  //add marker
-  map.addObject(marker);
-}
+    var mapTypes = platform.createDefaultLayers();
+
+    var options = {
+      zoom: 14,
+      center: {
+        lat: this.lat, lng: this.lon
+      }
+    };
+
+    var map = new H.Map(
+      document.getElementById('mapContainer'),
+      mapTypes.vector.normal.map,
+      options
+    );
+
+
+    var icon = this.mapIcon
+
+    var marker = new H.map.Marker({
+      lat: this.lat, lng: this.lon
+    }, {icon: icon})
+
+    //add marker
+    map.addObject(marker);
+  }
+
+
 }

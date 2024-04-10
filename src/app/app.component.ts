@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {NavComponent} from "./components/nav/nav.component";
 import {FooterComponent} from "./footer/footer.component";
+import {DatabaseService} from "./services/database.service";
 
 @Component({
   selector: 'app-root',
@@ -11,5 +12,9 @@ import {FooterComponent} from "./footer/footer.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+database = inject(DatabaseService)
 
+  constructor() {
+  this.database.initDatabase()
+  }
 }
