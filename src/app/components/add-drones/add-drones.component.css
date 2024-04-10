@@ -1,0 +1,9 @@
+.card {
+  width: 100%;
+  margin: 0 auto;
+  float: none;
+}
+.form-control, .addPhotoText, .form-label {
+  margin-left: 20px;
+  width: 45%;
+}

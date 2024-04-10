@@ -1,0 +1,10 @@
+.text-center {
+  width: 45%;
+}
+.photoDiv {
+  float: right;
+  padding: 5% 5% 0;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+}
