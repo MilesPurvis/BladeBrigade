@@ -1,1 +1,37 @@
-<p>add-zones works!</p>
+<div class="card m-5">
+  <div class="card-header">
+    <h4 class="m-1">Create A Fly Zone</h4>
+  </div>
+  <div class="card-body">
+    <form class="form-group" #myForm="ngForm">
+
+        <div class="mb-3">
+          <label class="form-label" for="newAddress">Address</label>
+          <div class="input-group">
+
+          <input class="form-control " type="text" name="newAddress" id="newAddress">
+          <input class="btn btn-primary" type="button" name="newAddress" id="getLocation" (click)="getLocationOnclick()" value="Current Location">
+          </div>
+        </div>
+
+
+      <div class="mb-3">
+
+        <label class="form-label" for="newRadius">Flying Radius</label>
+        <select class="form-select" [(ngModel)]="selectedOption" (change)="onOptionChange($event)" id="newRadius" [ngModelOptions]="{standalone: true}">
+          <option value="none">No Radius</option>
+          <option value="S" >Small</option>
+          <option value="L" >Large</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="addNumberOfDrones">Maximum Drones</label>
+        <input class="form-control" type="text"  name="addNumberOfDrones" id="addNumberOfDrones">
+
+      </div>
+      <div class="col-6 container" id="mapContainer" style="width: auto;height: 400px"></div>
+
+
+    </form>
+  </div>
+</div>
