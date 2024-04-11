@@ -5,7 +5,6 @@ import {FooterComponent} from "./components/footer/footer.component";
 import {DatabaseService} from "./services/database.service";
 import {CameraComponent} from "./components/camera/camera.component";
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
