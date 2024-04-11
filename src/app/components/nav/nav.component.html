@@ -1,16 +1,17 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+<nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light-subtle mb-4">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">{{ title }}</a>
+    <a class="navbar-brand" href="#"><img class="align-text-top" ngSrc="../../../assets/img/drone.svg" alt="drone" height="30" width="30">{{ title }} </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
+      <div class="navbar-nav ">
 
         <a class="nav-link" routerLink="/home">Home</a>
-        <a class="nav-link" routerLink="/add">Add</a>
-        <a class="nav-link" routerLink="/show">Show</a>
-        <a class="nav-link" routerLink="/settings">Settings</a>
+        <a class="nav-link" routerLink="/showDrones">Drones</a>
+        <a class="nav-link" style="padding-left: 25px" routerLink="/addDrones">Add a Drone</a>
+        <a class="nav-link" routerLink="/showGroups">Meetup</a>
+        <a class="nav-link" routerLink="/settings">Information</a>
 
       </div>
     </div>

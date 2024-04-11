@@ -1,0 +1,56 @@
+<div class="m-4">
+  <div class="card">
+    <div class="card-header text-center">
+      <h1>Add A Drone</h1>
+    </div>
+    <form>
+      <div class="mb-3">
+        <label class="form-label" for="droneBrand">Brand</label>
+        <input type="text" id="droneBrand" class="form-control" name="droneBrand">
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="droneModel">Model</label>
+        <input type="text" id="droneModel" class="form-control" name="droneModel" >
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="droneName">Your drone's unique name!</label>
+        <input type="text" id="droneName" class="form-control" name="droneName" >
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="droneColor">Color</label>
+        <select class="form-control" name="droneColor" id="droneColor">
+          <option selected value="white">White</option>
+          <option value="black">Black</option>
+          <option value="red">Red</option>
+          <option value="blue">Blue</option>
+          <option value="orange">Orange</option>
+          <option value="green">Green</option>
+          <option value="yellow">Yellow</option>
+          <option value="purple">Purple</option>
+          <option value="striped">Striped pattern</option>
+          <option value="multicolored">Multicolored</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="droneWeight">Weight</label>
+        <input type="number" id="droneWeight" class="form-control" name="droneWeight" >
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="pilotCert">Do you have a government issued drone pilot certificate?</label>
+        <input type="checkbox" id="pilotCert" class="" name="pilotCert" >
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="customModified">Is your drone modified or custom built?</label>
+        <input type="checkbox" id="customModified" class="" name="customModified" >
+      </div>
+      <p class="addPhotoText"><b>Add a Drone Photo</b></p>
+      <app-camera></app-camera>
+      <button type="button" id="btnAdd" class="btn-primary form-control" >Add</button>
+      <br>
+    </form>
+    <p>By adding a drone to the Blade Brigade system, you acknowledge </p>
+    <div class="card-footer">
+
+    </div>
+  </div>
+</div>

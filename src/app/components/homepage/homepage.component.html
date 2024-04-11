@@ -1,1 +1,46 @@
-<p class="m-4 text-center">homepage works!</p>
+<div class="container">
+  <div class="text-center">
+  <h1>Welcome to Blade Brigade<img alt="drone icon" class="align-text-bottom" ngSrc="../../../assets/img/drone.svg" height="50" width="50"></h1>
+  <img ngSrc="../../../assets/img/drone-cute.jpeg" class="img-fluid rounded-4" alt="cute drone" height="512" width="512">
+    <hr>
+
+  </div>
+  <!-- Placeholder for CRUD operations for Drones -->
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Manage Drones</h5>
+      <p class="card-text">Here you can add individual drones or view our collection.</p>
+      <!-- CRUD buttons -->
+      <div class="d-flex gap-1 ">
+      <a href="/addDrones" class="btn btn-primary">Add Drone</a>
+      <a href="/showDrones" class="btn bg-secondary-subtle">Show All Drones</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Placeholder for CRUD operations for Meetup groups -->
+  <div class="card mt-4">
+    <div class="card-body">
+      <h5 class="card-title">Manage Meetup Groups</h5>
+      <p class="card-text">Here you can add a drone meetup or view our meetups.</p>
+      <!-- CRUD buttons -->
+      <div class="d-flex gap-1 ">
+      <a href="/addGroups" class="btn btn-primary">Add Group</a>
+      <a href="/showGroups" class="btn bg-secondary-subtle">Show All Groups</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Placeholder for CRUD operations for Zones acceptable to fly -->
+  <div class="card mt-4">
+    <div class="card-body">
+      <h5 class="card-title">Manage Flight Zones</h5>
+      <p class="card-text">Here you can add or view the accepted fly zones.</p>
+      <!-- CRUD buttons -->
+      <div class="d-flex gap-1 ">
+      <a href="/addZones" class="btn btn-primary">Add FlyZone</a>
+      <a href="/showZones" class="btn bg-secondary-subtle">Show All FlyZones</a>
+      </div>
+    </div>
+  </div>
+</div>
