@@ -1,40 +1,79 @@
 <div class="card m-5">
-  <div class="card-header">
-    <h4 class="m-1">Create A Fly Zone</h4>
-  </div>
-  <div class="card-body">
-    <form class="form-group" #myForm="ngForm">
+    <div class="card-header">
+        <h4 class="m-1">Create A Fly Zone</h4>
+    </div>
+    <div class="card-body">
+        <form class="form-group" #myForm="ngForm">
 
-      <div class="mb-3">
-        <label class="form-label" for="newAddress">Address</label>
-        <div class="input-group">
+            <div class="mb-3">
+                <label class="form-label" for="newAddress">Address</label>
+                <div class="input-group">
 
-          <input class="form-control " type="text" name="newAddress" id="newAddress" (change)="getAddress()"
-                 [(ngModel)]="zone.address">
+                    <input class="form-control " type="text" name="newAddress" id="newAddress" (change)="getAddress()"
+                           [(ngModel)]="zone.address" required #address="ngModel">
 
-          <input class="btn btn-primary" type="button" name="newAddress" id="getLocation" (click)="getLocationOnclick()"
-                 value="Current Location">
-        </div>
-      </div>
-
-
-      <div class="mb-3">
-
-        <label class="form-label" for="newRadius">Flying Radius(m)</label>
-        <input class="form-control" type="number" name="newRadius" [(ngModel)]="zone.radius"
-               (change)="getRadius($event)" id="newRadius">
+                    <input class="btn btn-primary" type="button" name="newAddress" id="getLocation"
+                           (click)="getLocationOnclick()"
+                           value="Current Location">
 
 
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="addNumberOfDrones">Maximum Drones</label>
-        <input class="form-control" type="text" name="addNumberOfDrones" id="addNumberOfDrones"
-               [(ngModel)]="zone.maxDrones">
+                </div>
+                @if(address.invalid && (address.touched||address.dirty)){
+                    @if(address.errors?.['required']){
+                        <small class="text-danger">Address Required</small>
+                    }
+                }
+            </div>
 
-      </div>
-      <div class="col-6 container" id="mapContainer" style="width: auto;height: 400px"></div>
-      <button type="button" id="btnAdd" class="btn-success btn mt-4 " (click)="onAddClick()">Add Fly Zone</button>
 
-    </form>
-  </div>
+            <div class="mb-3">
+
+                <label class="form-label" for="newRadius">Flying Radius(m)</label>
+                <input class="form-control" type="number" name="newRadius" [(ngModel)]="zone.radius"
+                       (change)="getRadius($event)" id="newRadius" required [min]="MIN_RADIUS" [max]="MAX_RADIUS" #radius="ngModel">
+                @if(radius.invalid && (radius.touched||radius.dirty)){
+                    @if(radius.errors?.['required']){
+                        <small class="text-danger">Flight Radius Required</small>
+                    }
+                    @if(radius.errors?.['min']){
+                        <small class="text-danger">Invalid: Minimum {{ MIN_RADIUS }}m Radius</small>
+                    }
+                    @if(radius.errors?.['max']){
+                        <small class="text-danger">Invalid: Max 5km Radius </small>
+                    }
+                }
+
+
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="addNumberOfDrones">Maximum Drones</label>
+                <input class="form-control" type="number" name="addNumberOfDrones" id="addNumberOfDrones"
+                       [(ngModel)]="zone.maxDrones" required #droneNumber="ngModel" [min]="MIN_DRONES" [max]="MAX_DRONES">
+
+                @if(droneNumber.value > 5 && radius.value < 1000){
+                    <small class="text-danger">Invalid: Radius must be greater than 1k for more than 5 drones</small>
+
+                }
+
+                @if(droneNumber.invalid && (droneNumber.touched||droneNumber.dirty)){
+                   @if(droneNumber.errors?.['required']){
+                       <small class="text-danger">Drone Number Required</small>
+                   }
+                    @if(droneNumber.errors?.['min']){
+                        <small class="text-danger">Invalid: Minimum {{MIN_DRONES}} Drone</small>
+                    }
+
+                    @if(droneNumber.errors?.['max']){
+                        <small class="text-danger">Invalid: Max {{MAX_DRONES}} Drones</small>
+                    }
+
+                }
+
+            </div>
+            <div class="col-6 container" id="mapContainer"></div>
+            <button type="button" id="btnAdd" class="btn-success btn mt-4 " (click)="onAddClick()" [disabled]="myForm.invalid">Add Fly Zone</button>
+
+        </form>
+    </div>
 </div>

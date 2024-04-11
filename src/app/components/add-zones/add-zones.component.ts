@@ -18,17 +18,16 @@ declare const H: any;
 export class AddZonesComponent {
   geoService = inject(GeoService);
   dal = inject(ZoneDalService)
-
   zone: Zone = new Zone("", 0, 0)
-
   position: any;
   error: any;
-  radiusInMetres:any;
-
+  radiusInMetres:any = 0;
   lat: any;
   lng: any;
-
-  mapIcon: any;
+  MIN_RADIUS:number = 100;
+  MAX_RADIUS:number = 5000;
+  MAX_DRONES:number =10;
+  MIN_DRONES:number =1;
 
   constructor() {
   }
@@ -57,6 +56,7 @@ export class AddZonesComponent {
       this.showMap();
       return this.geoService.getLocationLatLon(this.lat, this.lng)
     }).then(data => {
+
       this.zone.address = data;
     }).catch(err => {
     })
@@ -74,7 +74,6 @@ export class AddZonesComponent {
 
 
   public showMap() {
-    console.log("Showing Map: ")
     document.getElementById("mapContainer")!.innerHTML = '';
 
     var mapTypes = this.geoService.hMapPlatform.createDefaultLayers();
@@ -86,8 +85,15 @@ export class AddZonesComponent {
       }
     };
 
+    let mapContainer = document.getElementById('mapContainer');
+    if (mapContainer) {
+      mapContainer.style.width = 'auto';
+      mapContainer.style.height = '400px';
+    }
+
+
     var map = new H.Map(
-      document.getElementById('mapContainer'),
+      mapContainer,
       mapTypes.vector.normal.map,
       options
     );
@@ -99,6 +105,8 @@ export class AddZonesComponent {
       lineCap: 'square',
       lineJoin: 'bevel'
     };
+
+
     var circle = new H.map.Circle({lat: this.lat, lng: this.lng}, this.radiusInMetres,{style:customStyle});
 
     map.addObject(circle);
