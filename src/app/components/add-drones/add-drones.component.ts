@@ -29,7 +29,7 @@ export class AddDronesComponent {
     droneBrand: ["", [Validators.required]],
     droneModel: ["", [Validators.required]],
     droneName: ["", [Validators.required]],
-    droneWeight: ["", [Validators.required, Validators.min(this.MIN_WEIGHT), Validators.max(this.MAX_WEIGHT)]],
+    droneWeight: [0, [Validators.required, Validators.min(this.MIN_WEIGHT), Validators.max(this.MAX_WEIGHT)]],
     pilotCert: [false],
     customModified: [false],
     droneColor: ["White"]

@@ -1,0 +1,24 @@
+.innerCard {
+  width: 90%;
+  padding: 1%;
+  margin: auto;
+}
+.card-text {
+  width: 70%;
+  line-height: 130%;
+}
+.card-text-p {
+  width: 70%;
+  line-height: 60%;
+}
+#my-div {
+  background-color: #f00;
+  width: 200px;
+  height: 200px;
+}
+a.fill-div {
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+}

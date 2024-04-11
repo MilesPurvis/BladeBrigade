@@ -1,1 +1,28 @@
-<p>show-drones works!</p>
+<p>Display</p>
+
+<div class="m-4">
+  <div class="card">
+    <div class="card-header text-center">
+      <h1>Available Drones on the website</h1>
+    </div>
+    <br>
+      <div class="mb-1" *ngFor="let drone of drones">
+        <a [routerLink]="['/editDrone', drone.id]" class="fill-div">
+        <div class="card innerCard">
+          <h2 class="card-text">{{drone.droneBrand}} {{drone.droneModel}}</h2>
+          <p class="card-text-p">{{drone.droneName}} : {{drone.droneWeight}}g</p>
+          <p class="card-text-p">Color: {{drone.droneColor}}</p>
+          <p class="card-text-p">Operator is certified: @if (drone.pilotCert) {
+            Yes
+          } @else {
+            No
+          }</p>
+        </div>
+        </a>
+      </div>
+    <br>
+    <div class="card-footer">
+
+    </div>
+  </div>
+</div>
