@@ -9,11 +9,12 @@ import {ShowZonesComponent} from "./components/show-zones/show-zones.component";
 import {AddDronesComponent} from "./components/add-drones/add-drones.component";
 import {AddGroupsComponent} from "./components/add-groups/add-groups.component";
 import {AddZonesComponent} from "./components/add-zones/add-zones.component";
+import {DetailZonesComponent} from "./components/detail-zones/detail-zones.component";
 
 export const routes: Routes = [
   {path: "home", component: HomepageComponent},
 
-  //show
+  //showall
   {path: "showDrones", component: ShowDronesComponent},
   {path: "showGroups", component: ShowGroupsComponent},
   {path: "showZones", component: ShowZonesComponent},
@@ -23,8 +24,10 @@ export const routes: Routes = [
   {path: "addGroups", component: AddGroupsComponent},
   {path: "addZones", component: AddZonesComponent},
 
-  //Edit
-  {path: "detail/:id", component: DetailpageComponent},
+  //edit
+  {path: "detail/zones/:id", component: DetailZonesComponent},
+
+  //info
   {path: "settings", component: SettingspageComponent},
   {path: "", redirectTo: "home",pathMatch:"full"},
   {path: "**", component: ErrorpageComponent},
