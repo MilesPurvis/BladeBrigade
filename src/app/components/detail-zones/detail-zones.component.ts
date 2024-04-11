@@ -128,4 +128,18 @@ export class DetailZonesComponent {
     }).catch(e=>{
       console.error(e.message)})
   }
+
+  onDeleteClick() {
+  if(confirm(`Are you sure you want to delete zone id(${this.zone.id}) - ${this.zone.address}`)) {
+    this.dal.delete(this.zone).then(data =>{
+      this.router.navigate(['/showZones'])
+    }).catch(e=>{
+      console.error(e.message)
+    })
+  }else{
+    alert("Zone delete aborted!")
+  }
+
+  }
+
 }

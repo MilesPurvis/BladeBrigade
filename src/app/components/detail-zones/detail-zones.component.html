@@ -72,12 +72,17 @@
 
       </div>
       <div class="col-6 container" id="mapContainer"></div>
-      <div class="text-center mt-4 btn-group">
-        <button type="button" id="btnAdd" class="btn-success btn  " (click)="onUpdateClick()" [disabled]="myForm.invalid">Update Fly Zone</button>
-        <a routerLink="/showZones" class="btn btn-outline-secondary" >Back</a>
+      <div class="d-flex mt-4 gap-1">
+
+        <button type="button" id="btnAdd" class="btn-success btn-sm btn  " (click)="onUpdateClick()" [disabled]="myForm.invalid">Update Fly Zone</button>
+
+      <button type="button" id="btnDelete" class="btn btn-sm btn-danger " (click)="onDeleteClick()" >Delete Zone</button>
+        <a routerLink="/showZones" class="btn btn-sm  btn-outline-secondary">Back</a>
       </div>
 
-
     </form>
+
   </div>
+
 </div>
+
