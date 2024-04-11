@@ -27,10 +27,10 @@ export const routes: Routes = [
 
   //edit
   {path: "detail/zones/:id", component: DetailZonesComponent},
+  {path: "detail/drones/:id", component: EditDroneComponent},
 
   //info
   {path: "settings", component: SettingspageComponent},
-  {path: "editDrone/:id", component: EditDroneComponent},
   {path: "", redirectTo: "home",pathMatch:"full"},
   {path: "**", component: ErrorpageComponent},
 ];

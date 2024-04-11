@@ -28,12 +28,9 @@ export class EditDroneComponent {
   constructor(private dal: DroneDalService, private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
       this.ID = params['id'];
-      this.dal.select(this.ID).then(data => {
-        console.log(data)
-
+      this.dal.select(Number(this.ID)).then(data => {
         if (data){
-
-          this.setFormValues();
+          this.setFormValues(data);
         } else {
           console.error('Drone not found');
         }
@@ -54,7 +51,8 @@ export class EditDroneComponent {
     droneColor: ["White"]
   });
 
-  setFormValues() {
+  setFormValues(data:any) {
+    this.drone = data;
     this.modifyDroneForm.patchValue({
       droneBrand: this.drone.droneBrand,
       droneModel: this.drone.droneModel,
