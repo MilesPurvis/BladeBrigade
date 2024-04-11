@@ -9,8 +9,10 @@ export class ZoneDalService {
 
   constructor() { }
   database = inject(DatabaseService);
+
   insert(zone:Zone): Promise<any>{
     return new Promise((resolve, reject) => {
+      console.log(this.database.db)
       const transaction = this.database.db.transaction(["zones"], "readwrite");
 
       transaction.oncomplete = (event: any) => {
@@ -35,9 +37,9 @@ export class ZoneDalService {
       };
     });
   }
-  selectAll(): Promise<Zone[]> {
+  selectAll(): Promise<Zone[]>{
     return new Promise((resolve, reject) => {
-      const transaction = this.database.db.transaction(["zones"]); //readonly
+      const transaction = this.database.db.transaction(["zones"],"readonly"); //readonly
 
       transaction.oncomplete = (event: any) => {
         console.log("Success: selectAll transaction successful");
@@ -71,6 +73,7 @@ export class ZoneDalService {
         resolve(event.target.result);
       };
       req.onerror = (event: any) => {
+
         console.log("Error: error in select: " + event);
         reject(event);
       };
