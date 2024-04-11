@@ -10,6 +10,7 @@ import {AddDronesComponent} from "./components/add-drones/add-drones.component";
 import {AddGroupsComponent} from "./components/add-groups/add-groups.component";
 import {AddZonesComponent} from "./components/add-zones/add-zones.component";
 import {DetailZonesComponent} from "./components/detail-zones/detail-zones.component";
+import {EditDroneComponent} from "./components/edit-drone/edit-drone.component";
 
 export const routes: Routes = [
   {path: "home", component: HomepageComponent},
@@ -29,6 +30,7 @@ export const routes: Routes = [
 
   //info
   {path: "settings", component: SettingspageComponent},
+  {path: "editDrone/:id", component: EditDroneComponent},
   {path: "", redirectTo: "home",pathMatch:"full"},
   {path: "**", component: ErrorpageComponent},
 ];

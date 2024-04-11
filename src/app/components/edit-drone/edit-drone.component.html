@@ -1,0 +1,100 @@
+<div class="m-4">
+  <div class="card">
+    <div class="card-header text-center">
+      <h1>Modify A Drone</h1>
+    </div>
+    <form [formGroup]="modifyDroneForm">
+      <!-- Brand -->
+      <div class="mb-3">
+        <label class="form-label" for="droneBrand">Brand</label>
+        <input type="text" id="droneBrand" class="form-control" name="droneBrand" formControlName="droneBrand">
+        @if (modifyDroneForm.controls['droneBrand'].invalid && (modifyDroneForm.controls['droneBrand'].touched || modifyDroneForm.controls['droneBrand'].dirty)) {
+          @if (modifyDroneForm.controls['droneBrand'].errors?.['required']) {
+            <small class="text-danger form-label">Drone Brand is required</small><br>
+          }
+        }
+      </div>
+
+      <!-- Model -->
+      <div class="mb-3">
+        <label class="form-label" for="droneModel">Model</label>
+        <input type="text" id="droneModel" class="form-control" name="droneModel" formControlName="droneModel">
+        @if (modifyDroneForm.controls['droneModel'].invalid && (modifyDroneForm.controls['droneModel'].touched || modifyDroneForm.controls['droneModel'].dirty)) {
+          @if (modifyDroneForm.controls['droneModel'].errors?.['required']) {
+            <small class="text-danger form-label">Drone Model is required</small><br>
+          }
+        }
+      </div>
+
+      <!-- Name -->
+      <div class="mb-3">
+        <label class="form-label" for="droneName">Your drone's unique name!</label>
+        <input type="text" id="droneName" class="form-control" name="droneName" formControlName="droneName">
+        @if (modifyDroneForm.controls['droneName'].invalid && (modifyDroneForm.controls['droneName'].touched || modifyDroneForm.controls['droneName'].dirty)) {
+          @if (modifyDroneForm.controls['droneName'].errors?.['required']) {
+            <small class="text-danger form-label">Drone Name is required</small><br>
+          }
+        }
+      </div>
+
+      <!-- Color -->
+      <div class="mb-3">
+        <label class="form-label" for="droneColor">Color</label>
+        <select class="form-control" name="droneColor" id="droneColor" formControlName="droneColor" [value]="defaultColorValue">
+          <option value="White">White</option>
+          <option value="Black">Black</option>
+          <option value="Red">Red</option>
+          <option value="Blue">Blue</option>
+          <option value="Orange">Orange</option>
+          <option value="Green">Green</option>
+          <option value="Yellow">Yellow</option>
+          <option value="Purple">Purple</option>
+          <option value="Striped">Striped pattern</option>
+          <option value="Multicolored">Multicolored</option>
+        </select>
+      </div>
+
+      <!-- Weight -->
+      <div class="mb-3">
+        <label class="form-label" for="droneWeight">Weight (grams)</label>
+        <input type="number" id="droneWeight" class="form-control" name="droneWeight" formControlName="droneWeight">
+        @if (modifyDroneForm.controls['droneWeight'].invalid && (modifyDroneForm.controls['droneWeight'].touched || modifyDroneForm.controls['droneWeight'].dirty)) {
+          @if (modifyDroneForm.controls['droneWeight'].errors?.['required']) {
+            <small class="text-danger form-label">Drone Weight is required</small><br>
+          }
+          @if (modifyDroneForm.controls['droneWeight'].errors?.['min']) {
+            <small class="text-danger form-label">Drone Weight must be at least {{ MIN_WEIGHT }} grams </small><br>
+          }
+          @if (modifyDroneForm.controls['droneWeight'].errors?.['max']) {
+            <small class="text-danger form-label">Drone Weight must be under 50kg ({{MAX_WEIGHT}}g) </small><br>
+          }
+        }
+      </div>
+
+      <!-- Certificate -->
+      <div class="mb-3">
+        <label class="form-label" for="pilotCert">Do you have a government issued drone pilot certificate?</label>
+        <input type="checkbox" id="pilotCert" name="pilotCert" formControlName="pilotCert">
+      </div>
+
+      <!-- Custom -->
+      <div class="mb-3">
+        <label class="form-label" for="customModified">Is your drone modified or custom built?</label>
+        <input type="checkbox" id="customModified" name="customModified" formControlName="customModified">
+      </div>
+
+      <!-- Add a drone photo -->
+      <p class="addPhotoText"><b>Add a Drone Photo</b></p>
+      <app-camera></app-camera>
+
+      <button [disabled]="!modifyDroneForm.valid" type="submit" id="btnAdd" class="btn btn-dark form-control" (click)="onModifyClick()">Add</button>
+
+      <br>
+    </form>
+    <br>
+    <div class="card-footer">
+      <p class="infoPTage">By modifying a drone in the Blade Brigade system, you acknowledge that
+        the information entered is accurate, and that is permitted for use across the page.</p>
+    </div>
+  </div>
+</div>
