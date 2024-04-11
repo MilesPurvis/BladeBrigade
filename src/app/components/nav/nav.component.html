@@ -8,9 +8,21 @@
       <div class="navbar-nav ">
 
         <a class="nav-link" routerLink="/home">Home</a>
-        <a class="nav-link" routerLink="/showDrones">Drones</a>
-        <a class="nav-link" style="padding-left: 25px" routerLink="/addDrones">Add a Drone</a>
-        <a class="nav-link" routerLink="/showGroups">Meetup</a>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDrones" role="button" data-bs-toggle="dropdown" aria-expanded="false">Drones</a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownDrones">
+          <li><a class="dropdown-item" routerLink="/showDrones">View Drones</a></li>
+          <li><a class="dropdown-item" routerLink="/addDrones">Add a Drone</a></li>
+        </ul>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownEvents" role="button" data-bs-toggle="dropdown" aria-expanded="false">Meetup</a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownEvents">
+          <li><a class="dropdown-item" routerLink="/showGroups">View Events</a></li>
+          <li><a class="dropdown-item" routerLink="/addGroups">Add a Event</a></li>
+        </ul>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownZone" role="button" data-bs-toggle="dropdown" aria-expanded="false">Zone</a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownZone">
+          <li><a class="dropdown-item" routerLink="/showZones">View Zone</a></li>
+          <li><a class="dropdown-item" routerLink="/addZones">Add a Zone</a></li>
+        </ul>
         <a class="nav-link" routerLink="/settings">Information</a>
 
       </div>

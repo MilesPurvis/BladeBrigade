@@ -1,15 +1,15 @@
 <div class="m-4">
   <div class="card">
     <div class="card-header text-center">
-      <h1>Add A Drone</h1>
+      <h1>Modify A Drone</h1>
     </div>
-    <form [formGroup]="addDroneForm">
+    <form [formGroup]="modifyDroneForm">
       <!-- Brand -->
       <div class="mb-3">
         <label class="form-label" for="droneBrand">Brand</label>
         <input type="text" id="droneBrand" class="form-control" name="droneBrand" formControlName="droneBrand">
-        @if (addDroneForm.controls['droneBrand'].invalid && (addDroneForm.controls['droneBrand'].touched || addDroneForm.controls['droneBrand'].dirty)) {
-          @if (addDroneForm.controls['droneBrand'].errors?.['required']) {
+        @if (modifyDroneForm.controls['droneBrand'].invalid && (modifyDroneForm.controls['droneBrand'].touched || modifyDroneForm.controls['droneBrand'].dirty)) {
+          @if (modifyDroneForm.controls['droneBrand'].errors?.['required']) {
             <small class="text-danger form-label">Drone Brand is required</small><br>
           }
         }
@@ -19,8 +19,8 @@
       <div class="mb-3">
         <label class="form-label" for="droneModel">Model</label>
         <input type="text" id="droneModel" class="form-control" name="droneModel" formControlName="droneModel">
-        @if (addDroneForm.controls['droneModel'].invalid && (addDroneForm.controls['droneModel'].touched || addDroneForm.controls['droneModel'].dirty)) {
-          @if (addDroneForm.controls['droneModel'].errors?.['required']) {
+        @if (modifyDroneForm.controls['droneModel'].invalid && (modifyDroneForm.controls['droneModel'].touched || modifyDroneForm.controls['droneModel'].dirty)) {
+          @if (modifyDroneForm.controls['droneModel'].errors?.['required']) {
             <small class="text-danger form-label">Drone Model is required</small><br>
           }
         }
@@ -30,8 +30,8 @@
       <div class="mb-3">
         <label class="form-label" for="droneName">Your drone's unique name!</label>
         <input type="text" id="droneName" class="form-control" name="droneName" formControlName="droneName">
-        @if (addDroneForm.controls['droneName'].invalid && (addDroneForm.controls['droneName'].touched || addDroneForm.controls['droneName'].dirty)) {
-          @if (addDroneForm.controls['droneName'].errors?.['required']) {
+        @if (modifyDroneForm.controls['droneName'].invalid && (modifyDroneForm.controls['droneName'].touched || modifyDroneForm.controls['droneName'].dirty)) {
+          @if (modifyDroneForm.controls['droneName'].errors?.['required']) {
             <small class="text-danger form-label">Drone Name is required</small><br>
           }
         }
@@ -58,14 +58,14 @@
       <div class="mb-3">
         <label class="form-label" for="droneWeight">Weight (grams)</label>
         <input type="number" id="droneWeight" class="form-control" name="droneWeight" formControlName="droneWeight">
-        @if (addDroneForm.controls['droneWeight'].invalid && (addDroneForm.controls['droneWeight'].touched || addDroneForm.controls['droneWeight'].dirty)) {
-          @if (addDroneForm.controls['droneWeight'].errors?.['required']) {
+        @if (modifyDroneForm.controls['droneWeight'].invalid && (modifyDroneForm.controls['droneWeight'].touched || modifyDroneForm.controls['droneWeight'].dirty)) {
+          @if (modifyDroneForm.controls['droneWeight'].errors?.['required']) {
             <small class="text-danger form-label">Drone Weight is required</small><br>
           }
-          @if (addDroneForm.controls['droneWeight'].errors?.['min']) {
+          @if (modifyDroneForm.controls['droneWeight'].errors?.['min']) {
             <small class="text-danger form-label">Drone Weight must be at least {{ MIN_WEIGHT }} grams </small><br>
           }
-          @if (addDroneForm.controls['droneWeight'].errors?.['max']) {
+          @if (modifyDroneForm.controls['droneWeight'].errors?.['max']) {
             <small class="text-danger form-label">Drone Weight must be under 50kg ({{MAX_WEIGHT}}g) </small><br>
           }
         }
@@ -84,16 +84,17 @@
       </div>
 
       <!-- Add a drone photo -->
-      <p class="addPhotoText"><b>Add a Drone Photo</b></p>
+      <p class="addPhotoText"><b>Modify a Drone Photo</b></p>
       <app-camera></app-camera>
 
-      <button [disabled]="!addDroneForm.valid" type="submit" id="btnAdd" class="btn btn-dark form-control" (click)="onAddClick()">Add</button>
+      <button [disabled]="!modifyDroneForm.valid" type="submit" id="btnModify" class="btn btn-dark form-control" (click)="onModifyClick()">Modify</button>
+      <button  type="submit" id="btnDelete" class="btn btn-danger form-control" (click)="onDeleteClick()">Delete</button>
 
       <br>
     </form>
     <br>
     <div class="card-footer">
-      <p class="infoPTage">By adding a drone to the Blade Brigade system, you acknowledge that
+      <p class="infoPTage">By modifying a drone in the Blade Brigade system, you acknowledge that
         the information entered is accurate, and that is permitted for use across the page.</p>
     </div>
   </div>
