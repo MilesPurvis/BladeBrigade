@@ -40,17 +40,17 @@
       <!-- Color -->
       <div class="mb-3">
         <label class="form-label" for="droneColor">Color</label>
-        <select class="form-control" name="droneColor" id="droneColor" [value]="defaultColorValue">
-          <option value="white">White</option>
-          <option value="black">Black</option>
-          <option value="red">Red</option>
-          <option value="blue">Blue</option>
-          <option value="orange">Orange</option>
-          <option value="green">Green</option>
-          <option value="yellow">Yellow</option>
-          <option value="purple">Purple</option>
-          <option value="striped">Striped pattern</option>
-          <option value="multicolored">Multicolored</option>
+        <select class="form-control" name="droneColor" id="droneColor" formControlName="droneColor" [value]="defaultColorValue">
+          <option value="White">White</option>
+          <option value="Black">Black</option>
+          <option value="Red">Red</option>
+          <option value="Blue">Blue</option>
+          <option value="Orange">Orange</option>
+          <option value="Green">Green</option>
+          <option value="Yellow">Yellow</option>
+          <option value="Purple">Purple</option>
+          <option value="Striped">Striped pattern</option>
+          <option value="Multicolored">Multicolored</option>
         </select>
       </div>
 
@@ -74,31 +74,27 @@
       <!-- Certificate -->
       <div class="mb-3">
         <label class="form-label" for="pilotCert">Do you have a government issued drone pilot certificate?</label>
-        <input type="checkbox" id="pilotCert" name="pilotCert">
+        <input type="checkbox" id="pilotCert" name="pilotCert" formControlName="pilotCert">
       </div>
 
       <!-- Custom -->
       <div class="mb-3">
         <label class="form-label" for="customModified">Is your drone modified or custom built?</label>
-        <input type="checkbox" id="customModified" name="customModified">
+        <input type="checkbox" id="customModified" name="customModified" formControlName="customModified">
       </div>
 
       <!-- Add a drone photo -->
       <p class="addPhotoText"><b>Add a Drone Photo</b></p>
       <app-camera></app-camera>
 
-      @if(addDroneForm.valid){
-        <button [disabled]="false" type="submit" id="btnAdd" class="btn btn-dark form-control" (click)="onAddClick()">Add</button>
-      } @else {
-        <button [disabled]="true" type="submit" id="btnAdd" class="btn btn-dark form-control" (click)="onAddClick()">Add</button>
+      <button [disabled]="!addDroneForm.valid" type="submit" id="btnAdd" class="btn btn-dark form-control" (click)="onAddClick()">Add</button>
 
-      }
       <br>
     </form>
     <br>
     <div class="card-footer">
       <p class="infoPTage">By adding a drone to the Blade Brigade system, you acknowledge that
-        the information entered is accurate, and that is permitted for use across the page</p>
+        the information entered is accurate, and that is permitted for use across the page.</p>
     </div>
   </div>
 </div>
