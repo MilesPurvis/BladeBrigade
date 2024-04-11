@@ -5,32 +5,35 @@
   <div class="card-body">
     <form class="form-group" #myForm="ngForm">
 
-        <div class="mb-3">
-          <label class="form-label" for="newAddress">Address</label>
-          <div class="input-group">
+      <div class="mb-3">
+        <label class="form-label" for="newAddress">Address</label>
+        <div class="input-group">
 
-          <input class="form-control " type="text" name="newAddress" id="newAddress">
-          <input class="btn btn-primary" type="button" name="newAddress" id="getLocation" (click)="getLocationOnclick()" value="Current Location">
-          </div>
+          <input class="form-control " type="text" name="newAddress" id="newAddress" (change)="getAddress()"
+                 [(ngModel)]="zone.address">
+
+          <input class="btn btn-primary" type="button" name="newAddress" id="getLocation" (click)="getLocationOnclick()"
+                 value="Current Location">
         </div>
+      </div>
 
 
       <div class="mb-3">
 
-        <label class="form-label" for="newRadius">Flying Radius</label>
-        <select class="form-select" [(ngModel)]="selectedOption" (change)="onOptionChange($event)" id="newRadius" [ngModelOptions]="{standalone: true}">
-          <option value="none">No Radius</option>
-          <option value="S" >Small</option>
-          <option value="L" >Large</option>
-        </select>
+        <label class="form-label" for="newRadius">Flying Radius(m)</label>
+        <input class="form-control" type="number" name="newRadius" [(ngModel)]="zone.radius"
+               (change)="getRadius($event)" id="newRadius">
+
+
       </div>
       <div class="mb-3">
         <label class="form-label" for="addNumberOfDrones">Maximum Drones</label>
-        <input class="form-control" type="text"  name="addNumberOfDrones" id="addNumberOfDrones">
+        <input class="form-control" type="text" name="addNumberOfDrones" id="addNumberOfDrones"
+               [(ngModel)]="zone.maxDrones">
 
       </div>
       <div class="col-6 container" id="mapContainer" style="width: auto;height: 400px"></div>
-
+      <button type="button" id="btnAdd" class="btn-success btn mt-4 " (click)="onAddClick()">Add Fly Zone</button>
 
     </form>
   </div>
