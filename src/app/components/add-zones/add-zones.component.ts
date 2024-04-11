@@ -19,40 +19,31 @@ export class AddZonesComponent {
   geoService = inject(GeoService);
   dal = inject(ZoneDalService)
 
-  zone:Zone = new Zone("123 street","S",5)
+  zone: Zone = new Zone("", 0, 0)
 
   position: any;
   error: any;
+  radiusInMetres:any;
 
   lat: any;
-  lon: any;
+  lng: any;
 
-  selectedOption: string;
   mapIcon: any;
 
   constructor() {
-    this.selectedOption = ""
   }
 
-  onAddClick(){
-    this.dal.insert(this.zone).then((data)=>{
+  onAddClick() {
+    this.dal.insert(this.zone).then((data) => {
       console.log(data);
       alert("Record added successfully")
-    }).catch(e=>{
+    }).catch(e => {
       console.error("Error" + e.message)
     })
   }
-  onOptionChange(event: any) {
-    this.selectedOption = event.target.value;
 
-    if (this.selectedOption == "none") {
-      this.mapIcon = new H.map.Icon('assets/img/default.png');
-    }else if(this.selectedOption == "S"){
-      this.mapIcon = new H.map.Icon('assets/img/SafeZone.png');
-    }else if(this.selectedOption == "L"){
-      this.mapIcon = new H.map.Icon('assets/img/SafeZone2.png');
-    }
-
+  getRadius(e: any) {
+    this.radiusInMetres = e.target.value;
     this.showMap()
   }
 
@@ -61,28 +52,37 @@ export class AddZonesComponent {
       console.log(data)
       this.position = data;
       this.lat = data.lat;
-      this.lon = data.lon;
+      this.lng = data.lng;
       this.error = "";
       this.showMap();
+      return this.geoService.getLocationLatLon(this.lat, this.lng)
+    }).then(data => {
+      this.zone.address = data;
     }).catch(err => {
     })
   }
+
+  getAddress() {
+    this.geoService.getCurrentLocation().then((data) => {
+      return this.geoService.getLocationByAddress(this.zone.address)
+    }).then(data => {
+      this.lat = data.lat
+      this.lng = data.lng
+      this.showMap()
+    })
+  }
+
 
   public showMap() {
     console.log("Showing Map: ")
     document.getElementById("mapContainer")!.innerHTML = '';
 
-    //init the platform obj
-    var platform = new H.service.Platform({
-      'apikey': 'cU638kKX9v40v8qGZfXBEwk8OFEBSoPKIz3lyA03o_g'
-    })
-
-    var mapTypes = platform.createDefaultLayers();
+    var mapTypes = this.geoService.hMapPlatform.createDefaultLayers();
 
     var options = {
-      zoom: 14,
+      zoom: 13.5,
       center: {
-        lat: this.lat, lng: this.lon
+        lat: this.lat, lng: this.lng
       }
     };
 
@@ -92,15 +92,16 @@ export class AddZonesComponent {
       options
     );
 
+    var customStyle = {
+      strokeColor: 'rgb(92,124,152)',
+      fillColor: 'rgba(163,208,80,0.25)',
+      lineWidth: 3,
+      lineCap: 'square',
+      lineJoin: 'bevel'
+    };
+    var circle = new H.map.Circle({lat: this.lat, lng: this.lng}, this.radiusInMetres,{style:customStyle});
 
-    var icon = this.mapIcon
-
-    var marker = new H.map.Marker({
-      lat: this.lat, lng: this.lon
-    }, {icon: icon})
-
-    //add marker
-    map.addObject(marker);
+    map.addObject(circle);
   }
 
 
