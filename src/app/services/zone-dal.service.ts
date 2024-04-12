@@ -53,7 +53,7 @@ export class ZoneDalService {
       //Preferred way
       //             const friendCursor = zoneStore.openCursor();
       //
-      //             let zones: Book[] = [];
+      //             let zones: Zones[] = [];
       //             friendCursor.onsuccess = (event: any) => {
       //                 const cursor = event.target.result;
       //                 // console.log(cursor);

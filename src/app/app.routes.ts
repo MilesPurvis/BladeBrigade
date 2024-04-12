@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import {SettingspageComponent} from "./components/settingspage/settingspage.component";
-import {DetailpageComponent} from "./components/detailpage/detailpage.component";
+import {DetailpageComponent} from "./components/group-detail/detailpage.component";
 import {HomepageComponent} from "./components/homepage/homepage.component";
 import {ErrorpageComponent} from "./components/errorpage/errorpage.component";
 import {ShowDronesComponent} from "./components/show-drones/show-drones.component";
@@ -28,9 +28,10 @@ export const routes: Routes = [
   //edit
   {path: "detail/zones/:id", component: DetailZonesComponent},
   {path: "detail/drones/:id", component: EditDroneComponent},
+  {path: "detail/groups/:id", component: DetailpageComponent},
 
   //info
   {path: "settings", component: SettingspageComponent},
   {path: "", redirectTo: "home",pathMatch:"full"},
-  {path: "**", component: ErrorpageComponent},
+  {path: "**", component: ErrorpageComponent}
 ];
