@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {NgOptimizedImage} from "@angular/common";
+import "bootstrap/dist/js/bootstrap.min.js"
 
 @Component({
   selector: 'app-nav',
@@ -14,6 +15,5 @@ import {NgOptimizedImage} from "@angular/common";
 })
 export class NavComponent {
   title = 'Blade Brigade';
-
 }
 
