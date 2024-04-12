@@ -18,6 +18,28 @@
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
+        <div class="mb-1" *ngFor="let group of groups">
+          <div class="col">
+            <div class="card shadow-sm">
+              <img src="./assets/img/drone.svg" alt="droneicon" width="250" height="250" >
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <small class="text-body-secondary"> {{ group.date }}</small><small class="text-body-secondary"> Size: {{group.droneArray.length}}</small>
+                </div>
+
+                <p class="card-text">{{group.description}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    If this doesnt work change the group.id to a random number like 1
+                    <button type="button" routerLink="/detail/groups/{{group.id}}" class="btn btn-sm btn-outline-primary">View </button>
+
+                  </div>
+                  <small class="text-body-secondary"> {{ group.name }} | {{group.email}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <!--For each event-->
         <div class="col">
           <div class="card shadow-sm">

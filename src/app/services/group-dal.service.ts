@@ -36,7 +36,7 @@ export class GroupDalService {
       };
     });
   }
-  selectAll(): Promise<Drone[]> {
+  selectAll(): Promise<Group[]> {
     return new Promise((resolve, reject) => {
       const transaction = this.database.db.transaction(["events"]); //readonly
 
