@@ -14,4 +14,6 @@ import {NgOptimizedImage} from "@angular/common";
 })
 export class NavComponent {
   title = 'Blade Brigade';
+
 }
+

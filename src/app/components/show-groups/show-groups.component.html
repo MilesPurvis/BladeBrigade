@@ -1,1 +1,48 @@
-<p>show-groups works!</p>
+<main>
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Find Groups to Join</h1>
+        <p class="lead text-body-secondary">Here at Blade Brigade we offer a selection of user created events/groups.
+          Please feel free to look through the current options we have available</p>
+        <p class="d-flex justify-content-center gap-2">
+          <a routerLink="/addGroups" class="btn btn-primary my-2">Add a Group</a>
+          <a routerLink="/showDrones"  class="btn btn-secondary my-2">View Drones</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        <!--For each event-->
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="./assets/img/drone.svg" alt="droneicon" width="250" height="250" >
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <small class="text-body-secondary"> Date</small><small class="text-body-secondary"> Size:</small>
+              </div>
+
+              <p class="card-text">This is the placeholder for the event description</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-primary">View </button>
+
+                </div>
+                <small class="text-body-secondary"> host | email.ca</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--  End-->
+
+
+      </div>
+    </div>
+  </div>
+
+</main>

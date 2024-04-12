@@ -46,9 +46,9 @@ export class DroneDalService{
         console.log("Error: error in selectAll transaction: " + event);
       };
 
-      const friendsStore = transaction.objectStore("drones");
+      const dronesStore = transaction.objectStore("drones");
 
-      const req = friendsStore.getAll();
+      const req = dronesStore.getAll();
       req.onsuccess = (event: any) => {
         resolve(event.target.result);
       };
@@ -70,9 +70,9 @@ export class DroneDalService{
         console.log("Error: error in select transaction: " + event);
       };
 
-      const friendsStore = transaction.objectStore("drones");
+      const dronesStore = transaction.objectStore("drones");
 
-      const req = friendsStore.get(id);
+      const req = dronesStore.get(id);
       req.onsuccess = (event: any) => {
         event.target.result ? resolve(event.target.result) : resolve(null);
       };
