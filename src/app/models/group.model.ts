@@ -11,7 +11,7 @@ export class Group {
   //Event Info
   description: string = "";
   size: number = 0;
-  date: Date = new Date();
+  date: Date = new Date()
 
   //Drones/Zones
   droneArray: Drone[] = [];
