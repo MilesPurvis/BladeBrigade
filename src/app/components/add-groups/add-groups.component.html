@@ -1,85 +1,217 @@
 <div class="container">
   <div class="card-header "><h2><i class="bi bi-calendar-event"></i> Create New Group/Event</h2>
-  <form>
-    <h6>Organizer info</h6>
-    <!--Name-->
-    <div class="form-group input-group">
-      <span class="input-group-text"><i class="bi bi-person"></i></span>
-      <input name="" class="form-control" placeholder="Name" type="text">
-    </div>
-    <!-- Email -->
-    <div class="form-group input-group">
-      <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-      <input name="" class="form-control" placeholder="Email address" type="email">
-    </div>
+    <form #eventForm="ngForm">
+      <h6>Organizer info</h6>
+      <!--Name-->
+      <div class="form-group input-group">
+        <span class="input-group-text"><i class="bi bi-person"></i></span>
+        <input name="name" class="form-control" placeholder="Name" type="text" [(ngModel)]="group.name" required
+               #name="ngModel">
+      </div>
+      @if (name.invalid && (name.touched || name.dirty)) {
+        @if (name.errors?.['required']) {
+          <small class="text-danger">Name Required</small>
+        }
+      }
+      <!-- Email -->
+      <div class="form-group input-group">
+        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+        <input name="email" class="form-control" placeholder="Email Address" type="email" [(ngModel)]="group.email"
+               required #email="ngModel" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+      </div>
+      @if (email.invalid && (email.touched || email.dirty)) {
+        @if (email.errors?.['required']) {
+          <small class="text-danger">Email Required</small>
+        }
+        @if (email.errors?.['pattern']) {
+          <small class="text-danger">Email Format invalid</small>
+        }
+      }
 
-    <hr><!-- Description -->
-    <h6>Event Info</h6>
-    <div class="form-group input-group">
-      <span class="input-group-text"><i class="bi bi-list-task"></i></span>
-      <input class="form-control" placeholder="Event Description" type="text">
-    </div>
+      <hr><!-- Description -->
+      <h6>Event Info</h6>
+      <div class="form-group input-group">
+        <span class="input-group-text"><i class="bi bi-list-task"></i></span>
+        <input class="form-control" placeholder="Event Description" type="text" name="description"
+               [(ngModel)]="group.description" required #description="ngModel">
+      </div>
+      @if (description.invalid && (description.touched || description.dirty)) {
+        @if (description.errors?.['required']) {
+          <small class="text-danger">description Required</small>
+        }
+      }
 
-    <!--Size-->
-    <div class="form-group input-group">
-      <span class="input-group-text"><i class="bi bi-people"></i></span>
-      <input class="form-control" placeholder="Group Size" type="number">
-    </div>
+      <!--Size-->
+      <div class="form-group input-group">
+        <span class="input-group-text"><i class="bi bi-people"></i></span>
+        <input class="form-control" placeholder="Group Size" type="number" name="groupSize" [(ngModel)]="group.size"
+               required #size="ngModel" [max]="10" [min]="1">
+      </div>
+      @if (size.invalid && (size.touched || size.dirty)) {
+        @if (size.errors?.['required']) {
+          <small class="text-danger">Size Required</small>
+        }
+        @if (size.errors?.['min']) {
+          <small class="text-danger">Minimum size is 1</small>
+        }
+        @if (size.errors?.['max']) {
+          <small class="text-danger">Max size is 10</small>
+        }
+      }
 
-    <!--Date-->
-    <div class="form-group input-group">
-      <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
-      <input class="form-control" placeholder="Location" type="date">
-    </div>
-    <hr>
-    <div class="container">
+      <!--Date-->
+      <div class="form-group input-group mb-3">
+        <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
+        <input class="form-control" placeholder="Date" type="date" name="date" [(ngModel)]="group.date" [min]="minDate"
+               required #date="ngModel">
+      </div>
+      @if ((date.touched || date.dirty)) {
+        @if (date.errors?.['required'] || date.pristine) {
+          <small class="text-danger">Date Required</small>
+        }
 
-        <div>
-          <!--Drones-->
-          <h6>Drones</h6>
-          <div class="form-group input-group">
-            <a routerLink="#" class="list-group-item list-group-item-action d-flex gap-3 py-3">
-              <img src="./assets/img/drone.svg" alt="droneImg" width="48" height="48" class="rounded-circle flex-shrink-0">
-              <div class="d-flex gap-2 w-100 justify-content-between">
-                <div>
-                  <h6 class="mb-0">Drone Name</h6>
-                  <p class="mb-0 opacity-75">Size</p>
-                </div>
-                <div class="d-flex flex-column">
-                  <small class="opacity-50">Weight</small>
-                </div>
-              </div>
-            </a>
-          </div>
-          <hr>
-          <!--Zones-->
-          <h6>Zones</h6>
-          <div class="form-group input-group">
-            <a routerLink="#" class="list-group-item list-group-item-action d-flex gap-3 py-3">
-              <img src="./assets/img/default.png" alt="droneImg" width="48" height="48" class="rounded-circle flex-shrink-0">
-              <div class="d-flex gap-2 w-100 justify-content-between">
-                <div>
-                  <h6 class="mb-0">Address</h6>
-                  <p class="mb-0 opacity-75">Available ✅</p>
-                </div>
-                <div class="d-flex flex-column">
-                  <small class="opacity-50">Radius ...(m)</small>
-                </div>
-              </div>
-            </a>
-          </div>
+      }
+
+
+
+
+
+        <div class="d-flex justify-content-between">
+          <h6 class="mb-1">Drones at event</h6>
+          <small class="opacity-75 ">Capacity: {{group.size - group.droneArray.length}}</small>
         </div>
 
 
-    </div>
+      @for (drone of addedDrones; track $index) {
+        <div class="list-group-item list-group-item-action d-flex gap-3 py-1">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h6>
+                <button class="btn btn-danger btn-sm opacity-75 rounded-circle " (click)="removeDroneFromEvent(drone)">
+                  <i class="bi bi-dash-lg"></i></button>
+                {{ drone.droneName }}
+              </h6>
 
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary btn-block mt-2">Create Group/Event</button>
-    </div>
+            </div>
+            <div class="d-flex flex-column">
+              <small class="opacity-50">id:({{ drone.id }}) | {{ drone.droneModel }}</small>
+            </div>
+          </div>
+        </div>
+      } @empty {
+        <p class="fst-italic text-primary">Add some Drones!</p>
+      }
+
+      <!--Event Zone-->
+      <h6 class="mb-1">Event Zone</h6>
+      @if (group.eventZone.address != "") {
+        <div class="list-group-item list-group-item-action d-flex gap-3 py-1">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h6>
+                <button (click)="removeZoneClick() " class="btn btn-danger btn-sm opacity-75 rounded-circle ">
+                  <i class="bi bi-dash-lg"></i></button>
+                {{ group.eventZone.address }}
+              </h6>
+
+            </div>
+            <div class="d-flex flex-column">
+              <small class="opacity-50">id:({{ group.eventZone.id }}) | {{ group.eventZone.radius }}</small>
+            </div>
+          </div>
+        </div>
+      } @else {
+        <p class="fst-italic text-primary">Select A Zone!</p>
+      }
+
+      <!--ADD-->
+      <hr>
+      <div class="container">
+        <div>
+          <h6>Available Drones </h6>
+          @if(group.size - group.droneArray.length > 0 ){
+            <div class="form-group input-group">
+              @for (drone of listOfDrones; track $index) {
+
+                <div class="list-group-item list-group-item-action d-flex gap-3 py-3">
+                  <img src="./assets/img/drone.svg" alt="droneImg" width="48" height="48"
+                       class="rounded-circle flex-shrink-0">
+                  <div class="d-flex gap-2 w-100 justify-content-between">
+                    <div>
+                      <h6 class="mb-0">
+                        <button class="btn btn-success btn-sm opacity-75 rounded-circle "
+                                (click)="addDroneToEvent(drone)"><i class="bi bi-plus-lg"></i></button>
+                        {{ drone.droneName }}
+                      </h6>
+                      <p class="mb-0 opacity-75">{{ drone.droneModel }} </p>
+                    </div>
+                    <div class="d-flex flex-column">
+                      <small class="opacity-50">{{ drone.droneWeight }}</small>
+                    </div>
+                  </div>
+                </div>
+              } @empty {
+                <p class="fst-italic text-danger">No Drones Available</p>
+              }
+            </div>
+          } @else {
+            <p class="fst-italic text-danger">Group Full!</p>
+          }
 
 
-  </form>
+          @if(group.eventZone.address == ""){
+          <hr>
+
+          <h6>Zones</h6>
 
 
-</div>
+          <div class="form-group input-group">
+
+            @for(zone of zoneList; track $index) {
+              @if (group.size <= zone.maxDrones) {
+
+                <div class="list-group-item list-group-item-action d-flex gap-3 py-3">
+                  <img src="./assets/img/default.png" alt="droneImg" width="48" height="48"
+                       class="rounded-circle flex-shrink-0">
+                  <div class="d-flex gap-2 w-100 justify-content-between">
+                    <div>
+                      <h6 class="mb-0">{{ zone.address }}</h6>
+                      <p class="mb-0 opacity-75">
+                        <button class="btn btn-success btn-sm rounded-circle" (click)="addZoneToEvent(zone)"><i
+                          class="bi bi-plus-lg"></i></button>
+                        Available
+                      </p>
+
+                    </div>
+                    <div class="d-flex flex-column">
+                      <small class="opacity-50">Radius {{ zone.radius }}(m)</small>
+                    </div>
+                  </div>
+                </div>
+
+              }
+            } @empty {
+              <p class="fst-italic text-danger">No Zones Available</p>
+            }
+
+
+          </div>
+          }
+
+        </div>
+
+
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block mt-2" (click)="addEventClick()"
+                [disabled]="eventForm.invalid || group.date.toString() == inValid || group.droneArray.length <= 0 || group.eventZone.address == empty">Create Group/Event
+        </button>
+      </div>
+
+
+    </form>
+
+
+  </div>
 </div>
