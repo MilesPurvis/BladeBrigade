@@ -78,7 +78,7 @@
 
         <div class="d-flex justify-content-between">
           <h6 class="mb-1">Drones at event</h6>
-          <small>Capacity: {{group.size - group.droneArray.length}}</small>
+          <small class="opacity-75 ">Capacity: {{group.size - group.droneArray.length}}</small>
         </div>
 
 
@@ -99,7 +99,7 @@
           </div>
         </div>
       } @empty {
-        <p class="fst-italic text-secondary">Add some Drones!</p>
+        <p class="fst-italic text-primary">Add some Drones!</p>
       }
 
       <!--Event Zone-->
@@ -121,7 +121,7 @@
           </div>
         </div>
       } @else {
-        <p class="fst-italic text-secondary">Select A Zone!</p>
+        <p class="fst-italic text-primary">Select A Zone!</p>
       }
 
       <!--ADD-->
@@ -151,11 +151,11 @@
                   </div>
                 </div>
               } @empty {
-                <p class="fst-italic text-secondary">No Drones Available</p>
+                <p class="fst-italic text-danger">No Drones Available</p>
               }
             </div>
           } @else {
-            <p class="fst-italic text-secondary">Group Full</p>
+            <p class="fst-italic text-danger">Group Full!</p>
           }
 
 
@@ -191,7 +191,7 @@
 
               }
             } @empty {
-              <p class="fst-italic text-secondary">No Zones Available</p>
+              <p class="fst-italic text-danger">No Zones Available</p>
             }
 
 
