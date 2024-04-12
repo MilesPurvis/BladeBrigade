@@ -22,3 +22,18 @@ a.fill-div {
   width: 100%;
   text-decoration: none;
 }
+.btn-edit {
+  text-align: center;
+  color: gray;
+  line-height: 1%;
+}
+.card-header {
+  background-color: white;
+  border: white;
+}
+.card-footer {
+  background-color: white;
+}
+.innerCard {
+  background-color: #fafafa;
+}
