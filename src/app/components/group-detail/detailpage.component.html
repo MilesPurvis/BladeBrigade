@@ -1,0 +1,22 @@
+<div class="container ">
+  <h1 class="text-center">Event {{group.name}} details</h1>
+  <div class="text-center ">
+      <h6 class=" mt-2 opacity-75 text-center">This event is happening on {{group.date}}</h6>
+  </div>
+
+  <hr>
+
+  <div class="card">
+    <h2 class="event-name">The {{ group.name }}</h2>
+    <hr width="45%">
+    <h5 class="details">Event Details:</h5>
+    <p class="p-event"><b>Description:</b> {{ group.description }}</p>
+    <p class="p-event"><b>Organizer email:</b> {{ group.email }}</p>
+
+    <p class="p-event dList-lbl"><b>Drones attending the meetup</b></p>
+    <button type="button" href="" id="btnEditGroup" class="btn btn-dark form-control btnEditGroup">Edit</button>
+    <div class="col-6 container" id="mapContainer"></div>
+
+  </div>
+</div>
+

@@ -38,7 +38,7 @@ export class DatabaseService {
           keyPath: "id",
           autoIncrement: true,
         });
-        const eventStore = this.db.createObjectStore("event", {
+        const eventStore = this.db.createObjectStore("events", {
           keyPath: "id",
           autoIncrement: true,
         });
