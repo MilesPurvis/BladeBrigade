@@ -39,6 +39,7 @@ export class AddDronesComponent {
 
   onAddClick() {
     // Update drone object with the retrieved value
+    this.drone.droneImage = String(this.addDroneForm.get("droneImage")?.value);
     this.drone.droneBrand = String(this.addDroneForm.get("droneBrand")?.value);
     this.drone.droneModel = String(this.addDroneForm.get("droneModel")?.value);
     this.drone.droneName = String(this.addDroneForm.get("droneName")?.value);
