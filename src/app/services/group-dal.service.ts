@@ -12,6 +12,7 @@ export class GroupDalService {
 
   insert(group: Group): Promise<any>{
     return new Promise((resolve, reject) => {
+      console.log(this.database.db)
       const transaction = this.database.db.transaction(["events"], "readwrite");
 
       transaction.oncomplete = (event: any) => {
@@ -21,8 +22,8 @@ export class GroupDalService {
         console.log("Error: error in insert transaction: " + event);
       };
 
-      const dronesList = transaction.objectStore("events");
-      const req = dronesList.add(group);
+      const groupStore = transaction.objectStore("events");
+      const req = groupStore.add(group);
 
       req.onsuccess = (event:any) => {
         //returns the key of newly added item
@@ -95,9 +96,9 @@ export class GroupDalService {
         console.log("Error: error in update transaction: " + event);
       };
 
-      const dronesList = transaction.objectStore("events");
+      const groupStore = transaction.objectStore("events");
 
-      const reqUpdate = dronesList.put(group);
+      const reqUpdate = groupStore.put(group);
 
       reqUpdate.onsuccess = (event: any) => {
         console.log(`Success: data updated successfully: ${event}`);
@@ -121,9 +122,9 @@ export class GroupDalService {
         console.log("Error: error in delete transaction: " + event);
       };
 
-      const dronesList = transaction.objectStore("events");
+      const groupStore = transaction.objectStore("events");
       if (group.id) {
-        const reqDelete = dronesList.delete(group.id);
+        const reqDelete = groupStore.delete(group.id);
         reqDelete.onsuccess = (event: any) => {
           console.log(`Success: data deleted successfully: ${event}`);
           resolve(event);
