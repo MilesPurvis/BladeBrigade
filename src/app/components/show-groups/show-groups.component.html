@@ -1,6 +1,6 @@
 <main>
 
-  <section class="py-5 text-center container">
+  <section class="py-3 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">Find Groups to Join</h1>
@@ -18,28 +18,26 @@
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-        <!--For each event-->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="./assets/img/drone.svg" alt="droneicon" width="250" height="250" >
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <small class="text-body-secondary"> Date</small><small class="text-body-secondary"> Size:</small>
-              </div>
-
-              <p class="card-text">This is the placeholder for the event description</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-primary">View </button>
-
+        <div class="mb-1" *ngFor="let group of groups">
+          <div class="col">
+            <div class="card shadow-sm">
+              <img src="./assets/img/drone.svg" alt="droneicon" width="230" height="230" >
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <small class="text-body-secondary"> {{ group.date }}</small><small class="text-body-secondary"> Size: {{group.droneArray.length}}</small>
                 </div>
-                <small class="text-body-secondary"> host | email.ca</small>
+
+                <p class="card-text">{{group.description}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" routerLink="/detail/groups/{{group.id}}" class="btn btn-sm btn-outline-primary">View </button>
+                  </div>
+                  <small class="text-body-secondary"> {{ group.name }} | {{group.email}}</small>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <!--  End-->
-
 
       </div>
     </div>
