@@ -6,7 +6,7 @@ import {Drone} from "../../models/drone.model";
 import {ZoneDalService} from "../../services/zone-dal.service";
 import {DroneDalService} from "../../services/drone-dal.service";
 import { FormsModule} from "@angular/forms";
-import {JsonPipe} from "@angular/common";
+import {JsonPipe, NgIf} from "@angular/common";
 import {isEmpty} from "rxjs";
 import {GroupDalService} from "../../services/group-dal.service";
 
@@ -17,7 +17,8 @@ import {GroupDalService} from "../../services/group-dal.service";
   imports: [
     RouterLink,
     FormsModule,
-    JsonPipe
+    JsonPipe,
+    NgIf
   ],
   templateUrl: './add-groups.component.html',
   styleUrl: './add-groups.component.css',
@@ -46,6 +47,12 @@ export class AddGroupsComponent {
   constructor() {
     this.showAll()
 
+  }
+
+  checkForZones(size:number){
+    console.log(this.zoneList.some(zone => size < zone.maxDrones),size,this.zoneList)
+
+    return this.zoneList.some(zone => size <= zone.maxDrones)
   }
 
   showAll() {
