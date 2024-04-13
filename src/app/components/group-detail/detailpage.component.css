@@ -1,31 +1,20 @@
-.card {
-  width: 100%;
-  margin: 0 auto;
-  padding: 2%;
-  float: none;
-}
+/*.card {*/
+/*  width: 100%;*/
+/*  margin: 0 auto;*/
+/*  padding: 2%;*/
+/*  float: none;*/
+/*}*/
 .details {
-  color: #606060;
+  color: #7a7a7a;
   padding-bottom: 1%;
 }
-.event-name {
-  padding-top: 1%;
-  margin-bottom: 0;
-  width: 80%;
-}
-.p-event {
-  width: 55%;
-}
-.dList-lbl {
-  float: right;
-  position: relative;
-  left: 55%;
-  bottom: 100px;
-  line-height: 100%;
-}
-.btnEditGroup {
-  width: 20%;
-  position: relative;
-  left: 80%;
-  bottom: 205px;
-}
+/*.event-name {*/
+/*  padding-top: 1%;*/
+/*  margin-bottom: 0;*/
+/*  width: 80%;*/
+/*}*/
+/*.p-event {*/
+/*  width: 55%;*/
+/*}*/
+
+
