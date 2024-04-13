@@ -14,19 +14,18 @@
   width: 80%;
 }
 .p-event {
-  line-height: 40%;
   width: 55%;
 }
 .dList-lbl {
   float: right;
   position: relative;
   left: 55%;
-  bottom: 80px;
+  bottom: 100px;
   line-height: 100%;
 }
 .btnEditGroup {
-  width: 15%;
+  width: 20%;
   position: relative;
-  left: 85%;
-  bottom: 185px;
+  left: 80%;
+  bottom: 205px;
 }

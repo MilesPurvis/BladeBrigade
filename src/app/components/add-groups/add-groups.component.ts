@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {Group} from "../../models/group.model";
 import {Zone} from "../../models/zone.model";
 import {Drone} from "../../models/drone.model";
@@ -8,6 +8,7 @@ import {DroneDalService} from "../../services/drone-dal.service";
 import { FormsModule} from "@angular/forms";
 import {JsonPipe} from "@angular/common";
 import {isEmpty} from "rxjs";
+import {GroupDalService} from "../../services/group-dal.service";
 
 
 @Component({
@@ -32,6 +33,8 @@ export class AddGroupsComponent {
   zone: Zone = new Zone("", 0, 0);
   zoneDal = inject(ZoneDalService)
   droneDal = inject(DroneDalService)
+  groupDal = inject(GroupDalService)
+  router = inject(Router)
   minDate = new Date().toISOString().split('T')[0];
   today:Date = new Date()
   inValid = "Invalid Date"
@@ -85,7 +88,13 @@ export class AddGroupsComponent {
   }
 
   addEventClick() {
-
+    this.groupDal.insert(this.group).then((data) => {
+      console.log(data);
+      alert("Group added successfully")
+      this.router.navigate(['/showGroups'])
+    }).catch(e => {
+      console.error("Error" + e.message)
+    })
   }
 
   addZoneToEvent(eventZone:Zone) {
