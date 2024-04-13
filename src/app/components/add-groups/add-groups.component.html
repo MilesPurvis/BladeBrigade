@@ -76,10 +76,10 @@
 
 
 
-        <div class="d-flex justify-content-between">
-          <h6 class="mb-1">Drones at event</h6>
-          <small class="opacity-75 ">Capacity: {{group.size - group.droneArray.length}}</small>
-        </div>
+      <div class="d-flex justify-content-between">
+        <h6 class="mb-1">Drones at event</h6>
+        <small class="opacity-75 ">Capacity: {{ group.size - group.droneArray.length }}</small>
+      </div>
 
 
       @for (drone of addedDrones; track $index) {
@@ -129,7 +129,7 @@
       <div class="container">
         <div>
           <h6>Available Drones </h6>
-          @if(group.size - group.droneArray.length > 0 ){
+          @if (group.size - group.droneArray.length > 0) {
             <div class="form-group input-group">
               @for (drone of listOfDrones; track $index) {
 
@@ -159,43 +159,52 @@
           }
 
 
-          @if(group.eventZone.address == ""){
-          <hr>
+          @if (group.eventZone.address == "") {
+            <hr>
 
-          <h6>Zones</h6>
+            <h6>Zones</h6>
 
 
-          <div class="form-group input-group">
+            <div class="form-group input-group">
+              @if(checkForZones(group.size)){
+                @for (zone of zoneList; track $index) {
+                  @if (group.size <= zone.maxDrones) {
 
-            @for(zone of zoneList; track $index) {
-              @if (group.size <= zone.maxDrones) {
+                    <div class="list-group-item list-group-item-action d-flex gap-3 py-3">
+                      <img src="./assets/img/default.png" alt="droneImg" width="48" height="48"
+                           class="rounded-circle flex-shrink-0">
+                      <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                          <h6 class="mb-0">{{ zone.address }}</h6>
+                          <p class="mb-0 opacity-75">
+                            <button class="btn btn-success btn-sm rounded-circle" (click)="addZoneToEvent(zone)"><i
+                              class="bi bi-plus-lg"></i></button>
+                            Available
+                          </p>
 
-                <div class="list-group-item list-group-item-action d-flex gap-3 py-3">
-                  <img src="./assets/img/default.png" alt="droneImg" width="48" height="48"
-                       class="rounded-circle flex-shrink-0">
-                  <div class="d-flex gap-2 w-100 justify-content-between">
-                    <div>
-                      <h6 class="mb-0">{{ zone.address }}</h6>
-                      <p class="mb-0 opacity-75">
-                        <button class="btn btn-success btn-sm rounded-circle" (click)="addZoneToEvent(zone)"><i
-                          class="bi bi-plus-lg"></i></button>
-                        Available
-                      </p>
-
+                        </div>
+                        <div class="d-flex flex-column">
+                          <small class="opacity-50">Radius {{ zone.radius }}(m)</small>
+                        </div>
+                      </div>
                     </div>
-                    <div class="d-flex flex-column">
-                      <small class="opacity-50">Radius {{ zone.radius }}(m)</small>
-                    </div>
-                  </div>
+
+                  }
+                } @empty {
+                  <p class="fst-italic text-danger">No Zones Available</p>
+
+                }
+
+              } @else {
+                <div  >
+                <p >No suitable zones   <small><a class="btn-primary btn btn-sm rounded-pill" routerLink="/addZones" u>Create Zone<i
+                  class="bi bi-plus-lg"></i></a></small></p>
+
                 </div>
-
               }
-            } @empty {
-              <p class="fst-italic text-danger">No Zones Available</p>
-            }
 
+            </div>
 
-          </div>
           }
 
         </div>
@@ -205,7 +214,8 @@
 
       <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block mt-2" (click)="addEventClick()"
-                [disabled]="eventForm.invalid || group.date.toString() == inValid || group.droneArray.length <= 0 || group.eventZone.address == empty">Create Group/Event
+                [disabled]="eventForm.invalid || group.date.toString() == inValid || group.droneArray.length <= 0 || group.eventZone.address == empty">
+          Create Group/Event
         </button>
       </div>
 
