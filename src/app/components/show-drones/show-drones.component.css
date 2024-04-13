@@ -37,3 +37,8 @@ a.fill-div {
 .innerCard {
   background-color: #fafafa;
 }
+.image-error {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
