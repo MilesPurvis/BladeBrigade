@@ -48,8 +48,6 @@ getLocationLatLon(lat:number,lon:number):Promise<any>{
 
   getLocationByAddress(address: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-
-      console.log("getLocationByAddress()")
       let geocoder = this.hMapPlatform.getSearchService()
 
       const options = {

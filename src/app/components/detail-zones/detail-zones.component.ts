@@ -70,14 +70,12 @@ export class DetailZonesComponent {
     const id: number = Number(this.activatedRoute.snapshot.paramMap.get("id"));
     this.dal.select(id).then(data => {
       this.zone = data;
-      console.log("Selected: " + id)
       this.getAddress()
       this.showMap()
 
     }).catch(e => {
       console.error(e.message)
     })
-
   }
 
   public showMap() {
@@ -121,24 +119,25 @@ export class DetailZonesComponent {
 
 
   onUpdateClick() {
-    this.dal.update(this.zone).then((data)=>{
+    this.dal.update(this.zone).then((data) => {
       console.log(data)
       alert("Record Updated Success");
       this.router.navigate(['/showZones'])
-    }).catch(e=>{
-      console.error(e.message)})
+    }).catch(e => {
+      console.error(e.message)
+    })
   }
 
   onDeleteClick() {
-  if(confirm(`Are you sure you want to delete zone id(${this.zone.id}) - ${this.zone.address}`)) {
-    this.dal.delete(this.zone).then(data =>{
-      this.router.navigate(['/showZones'])
-    }).catch(e=>{
-      console.error(e.message)
-    })
-  }else{
-    alert("Zone delete aborted!")
-  }
+    if (confirm(`Are you sure you want to delete zone id(${this.zone.id}) - ${this.zone.address}`)) {
+      this.dal.delete(this.zone).then(data => {
+        this.router.navigate(['/showZones'])
+      }).catch(e => {
+        console.error(e.message)
+      })
+    } else {
+      alert("Zone delete aborted!")
+    }
 
   }
 
