@@ -21,18 +21,27 @@
         <div class="mb-1" *ngFor="let group of groups">
           <div class="col">
             <div class="card shadow-sm">
-              <img src="./assets/img/drone.svg" alt="droneicon" width="230" height="230" >
+
+                <img src="./assets/img/drone.svg" alt="droneicon" class="img-fluid  mx-auto w-50" >
+
+
               <div class="card-body">
                 <div class="d-flex justify-content-between">
-                  <small class="text-body-secondary"> {{ group.date }}</small><small class="text-body-secondary"> Size: {{group.droneArray.length}}</small>
+                  <small class="opacity-75"><i class="bi bi-geo-alt-fill"></i>{{formatAddress(group.eventZone.address)}}</small>
+                  <small class="text-body-secondary"><i class="bi bi-people-fill"></i> Size: {{group.size}} </small>
                 </div>
 
-                <p class="card-text">{{group.description}}</p>
+                <div class="d-flex justify-content-between">
+                  <p class="card-text">{{group.description}}</p> <small class="text-body-secondary opacity-50"><i class="bi bi-calendar-event"></i> {{ formatDate(group.date.toString())}}</small>
+                </div>
+
+
+
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <button type="button" routerLink="/detail/groups/{{group.id}}" class="btn btn-sm btn-outline-primary">View </button>
                   </div>
-                  <small class="text-body-secondary"> {{ group.name }} | {{group.email}}</small>
+                  <small class="text-body-secondary"><i class="bi bi-person-circle"></i> {{ group.name }} | <a class="link-opacity-75" href="mailto:{{group.email}}?Subject={{group.description}}[event]&body=Hello {{group.name}}," >{{group.email}}</a></small>
                 </div>
               </div>
             </div>
