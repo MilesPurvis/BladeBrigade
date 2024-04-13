@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {Drone} from "../../models/drone.model";
 import {DroneDalService} from "../../services/drone-dal.service";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterLink} from "@angular/router";
 
@@ -12,7 +12,8 @@ import {RouterLink} from "@angular/router";
     NgForOf,
     FormsModule,
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
+    NgIf
   ],
   templateUrl: './show-drones.component.html',
   styleUrl: './show-drones.component.css'
