@@ -1,32 +1,27 @@
 import {Component, inject} from '@angular/core';
-import {Router, RouterLink} from "@angular/router";
-import {Group} from "../../models/group.model";
-import {Zone} from "../../models/zone.model";
-import {Drone} from "../../models/drone.model";
+import {FormsModule} from "@angular/forms";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {ZoneDalService} from "../../services/zone-dal.service";
 import {DroneDalService} from "../../services/drone-dal.service";
-import { FormsModule} from "@angular/forms";
-import {JsonPipe, NgIf} from "@angular/common";
-import {isEmpty} from "rxjs";
 import {GroupDalService} from "../../services/group-dal.service";
-
+import {Group} from "../../models/group.model";
+import { Zone } from '../../models/zone.model';
+import { Drone } from '../../models/drone.model';
+import {isEmpty} from "rxjs";
 
 @Component({
-  selector: 'app-add-groups',
+  selector: 'app-edit-group',
   standalone: true,
   imports: [
-    RouterLink,
     FormsModule,
-    JsonPipe,
-    NgIf
+    RouterLink
   ],
-  templateUrl: './add-groups.component.html',
-  styleUrl: './add-groups.component.css',
-
+  templateUrl: './edit-group.component.html',
+  styleUrl: './edit-group.component.css'
 })
-export class AddGroupsComponent {
+export class EditGroupComponent {
 
-
+  ID:number = 0;
   zoneList: Zone[] = []
   droneList: Drone[] = []
   listOfDrones: Drone[] = [];
@@ -44,9 +39,20 @@ export class AddGroupsComponent {
 
   group: Group = new Group("", "", "", 0,new Date(""), [], new Zone("", 0, 0))
 
-  constructor() {
+  constructor(private route: ActivatedRoute) {
+    this.route.params.subscribe(params => {
+      this.ID = params['id'];
+      this.groupDal.select(Number(this.ID)).then(data => {
+        if (data){
+          this.group = (data);
+        } else {
+          console.error('Group not found');
+        }
+      }).catch(e => {
+        console.error(e.message)
+      })
+    });
     this.showAll()
-
   }
 
   checkForZones(size:number){
@@ -94,19 +100,30 @@ export class AddGroupsComponent {
     this.group.droneArray = this.addedDrones
   }
 
-  addEventClick() {
-    this.groupDal.insert(this.group).then((data) => {
+  updateEventClick() {
+    this.groupDal.update(this.group).then((data) => {
       console.log(data);
-      alert("Group added successfully")
+      alert("Group updated successfully")
       this.router.navigate(['/showGroups'])
     }).catch(e => {
       console.error("Error" + e.message)
     })
   }
 
+  deleteEventClick() {
+    if(confirm("Are you sure to delete "+ this.group.name)) {
+      this.groupDal.delete(this.group).then((data) => {
+        console.log(data);
+        alert("Group deleted successfully")
+        this.router.navigate(['/showGroups'])
+      }).catch(e => {
+        console.error("Error" + e.message)
+      })
+    }
+  }
+
   addZoneToEvent(eventZone:Zone) {
     this.group.eventZone = eventZone
-
   }
 
   removeZoneClick() {

@@ -66,6 +66,7 @@ export class EditDroneComponent {
 
   onModifyClick() {
     // Update drone object with the retrieved value
+    this.drone.droneImage = String(this.modifyDroneForm.get("droneImage")?.value);
     this.drone.droneBrand = String(this.modifyDroneForm.get("droneBrand")?.value);
     this.drone.droneModel = String(this.modifyDroneForm.get("droneModel")?.value);
     this.drone.droneName = String(this.modifyDroneForm.get("droneName")?.value);

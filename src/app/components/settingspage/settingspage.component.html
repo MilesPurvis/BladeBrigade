@@ -3,23 +3,26 @@
     <div>
       <div class="row text-center">
         <h1>Options</h1>
+
         <div class="col-5">
-          <h3>Fly Zones</h3>
-          <a routerLink="/showZones" class="btn btn-primary btn-sm ">See All  Fly Zones</a>
-        </div>
-        <div class="col-7">
           <h3>Database Actions</h3>
           <div class="btn-group mb-4">
-
-            <a href="#" class="btn btn-primary btn-sm ">Create Database </a>
-
-
-            <a href="#" class="btn btn-outline-secondary btn-sm ">Delete </a>
-
+            <a (click)="CreateDBFunction()" class="btn btn-primary btn-sm ">Create Database</a>
+            <a (click)="DeleteDBFunction()" class="btn btn-outline-secondary btn-sm ">Delete Database</a>
           </div>
 
         </div>
+        <div class="col-7">
+          <h3>Create Tables</h3>
+          <a (click)="CreateAllTablesDBFunction()" class="btn btn-primary btn-sm ">Create all tables</a>
+          <br>
+          <a (click)="CreateDroneTableDBFunction()" class="btn btn-outline-secondary btn-sm btn-settings">Create drone table</a>
+          <a (click)="CreateZoneTableDBFunction()" class="btn btn-outline-secondary btn-sm btn-settings">Create zone table</a>
+          <a (click)="CreateGroupTableDBFunction()" class="btn btn-outline-secondary btn-sm btn-settings">Create event table</a>
+        </div>
       </div>
+
+      <hr>
 
       <h2>About Drones</h2>
       <hr>

@@ -3,6 +3,7 @@ import {CameraComponent} from "../camera/camera.component";
 import {Drone} from "../../models/drone.model";
 import {DroneDalService} from "../../services/drone-dal.service";
 import {FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-drones',
@@ -35,10 +36,13 @@ export class AddDronesComponent {
     droneColor: ["White"]
   });
 
+  constructor(private router: Router) {}
+
   drone:Drone = new Drone("", "", "", "White", 0, false, false, null);
 
   onAddClick() {
     // Update drone object with the retrieved value
+    this.drone.droneImage = String(this.addDroneForm.get("droneImage")?.value);
     this.drone.droneBrand = String(this.addDroneForm.get("droneBrand")?.value);
     this.drone.droneModel = String(this.addDroneForm.get("droneModel")?.value);
     this.drone.droneName = String(this.addDroneForm.get("droneName")?.value);
@@ -50,6 +54,7 @@ export class AddDronesComponent {
     this.dal.insert(this.drone).then((data) => {
       console.log(data);
       alert("Record added successfully")
+      this.router.navigate(['/showDrones'])
     }).catch((e) => {
       console.log("Errors: " + e.message);
     });

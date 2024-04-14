@@ -2,8 +2,15 @@
   <div class="card">
     <div class="card-header text-center">
       <h1>Available Drones on the website</h1>
+      <button type="button" class="btn btn-primary btn-sm fw-medium mx-5 rounded-5" routerLink="/addDrones">Add Drone<i class="bi bi-plus-circle mx-1 "></i></button>
     </div>
     <br>
+
+    <div *ngIf="drones.length === 0;" class="empty-message">
+      <h3 class="text-center rounded-5 text-warning p-2">No Drones found</h3>
+      <img class="image-error" src="./assets/img/drone-noDrones.png" width="250" height="250" alt="sad Drone" >
+    </div>
+
       <div class="mb-1" *ngFor="let drone of drones">
         <a routerLink="/detail/drones/{{drone.id}}" class="fill-div">
         <div class="card innerCard">
@@ -15,6 +22,7 @@
           } @else {
             No
           }</p>
+          <p class="btn-edit">Click to edit</p>
         </div>
         </a>
       </div>

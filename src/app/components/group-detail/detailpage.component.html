@@ -1,0 +1,59 @@
+<div class="container ">
+  <h1 class="text-center">Event "{{ group.description }}" details</h1>
+  <div class="text-center ">
+    <h6 class=" mt-2 opacity-75 text-center text-primary">This event is happening on {{ formatDate(group.date.toString())}}</h6>
+  </div>
+
+
+  <div class="d-flex flex-column bg-light card border-light">
+
+      <div class="card-header d-flex align-items-baseline justify-content-between "><h2>{{ group.description }}</h2><button routerLink="/detail/groups/edit/{{group.id}}" class=" btn btn-sm btn-light text-secondary shadow-sm rounded-pill"><i class="bi bi-pencil-square"></i> Edit</button> </div>
+    <div class="card-body">
+      <div class="card-group d-flex flex-column">
+        <h6 class="card-header-pills">Organizer Info:</h6>
+        <small class="text-muted"><b><i class="bi bi-person-badge-fill"></i></b> Organizer name: {{ group.name }}</small>
+        <small class="text-muted"><b><i class="bi bi-envelope-fill"></i></b> Organizer email:<a class="link-opacity-75 mx-1" href="mailto:{{group.email}}?Subject={{group.description}}[event]&body=Hello {{group.name}}," >{{group.email}}</a></small>
+      </div>
+      <hr width="45%">
+      <div class="card-group d-flex flex-column">
+        <h5 class="card-header-pills">Event Details:</h5>
+        <p class="text-muted"><b><i class="bi bi-calendar-event-fill"></i></b> Date: {{formatDate(group.date.toString()) }}</p>
+        <p class="text-muted"><b><i class="bi bi-info-circle-fill"></i></b> Description: {{ group.description }}</p>
+        <p class="text-muted"><b><i class="bi bi-people-fill"></i></b> Size: {{ group.size }}</p>
+        <p class="text-muted"><b><i class="bi bi-geo-alt-fill"></i></b> Address: {{ group.eventZone.address }}</p>
+        <p class="text-muted"><b><i class="bi bi-airplane-fill"></i></b> Radius: {{ group.eventZone.radius }}m</p>
+      </div>
+
+      <div>
+        <h6 class="card-header-pills ">Drones attending the meetup</h6>
+        @for (drone of drones; track $index) {
+          <div class="list-group-item list-group-item-action d-flex gap-3 py-3">
+            <img src="./assets/img/drone.svg" alt="droneImg" width="48" height="48"
+                 class="rounded-circle flex-shrink-0">
+            <div>
+              <div >
+                <p class="mb-0 opacity-75">{{ drone.droneModel }} | "{{drone.droneName}}" </p>
+
+              </div>
+              <div class="d-flex flex-column">
+                <small class="opacity-50">{{ drone.droneWeight }}g | {{drone.droneColor}} </small>
+
+              </div>
+            </div>
+          </div>
+        } @empty {
+          <p class="fst-italic text-danger">No Drones Available</p>
+        }
+      </div>
+
+
+      </div>
+
+
+    <div class="img-fluid" id="mapContainer"></div>
+  </div>
+
+
+
+</div>
+

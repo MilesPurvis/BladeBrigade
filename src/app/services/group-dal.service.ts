@@ -1,17 +1,19 @@
-import {inject, Injectable} from "@angular/core";
-import {Drone} from "../models/drone.model";
+import {inject, Injectable} from '@angular/core';
 import {DatabaseService} from "./database.service";
+import {Drone} from "../models/drone.model";
+import {Group} from "../models/group.model";
 
 @Injectable({
   providedIn: 'root'
 })
+export class GroupDalService {
 
-export class DroneDalService{
   database =inject(DatabaseService);
 
-  insert(drone: Drone): Promise<any>{
+  insert(group: Group): Promise<any>{
     return new Promise((resolve, reject) => {
-      const transaction = this.database.db.transaction(["drones"], "readwrite");
+      console.log(this.database.db)
+      const transaction = this.database.db.transaction(["events"], "readwrite");
 
       transaction.oncomplete = (event: any) => {
         console.log("Success: insert transaction successful");
@@ -20,12 +22,12 @@ export class DroneDalService{
         console.log("Error: error in insert transaction: " + event);
       };
 
-      const dronesList = transaction.objectStore("drones");
-      const req = dronesList.add(drone);
+      const groupStore = transaction.objectStore("events");
+      const req = groupStore.add(group);
 
       req.onsuccess = (event:any) => {
         //returns the key of newly added item
-        console.log(`Success: drone added successfully ${event.target.result}`);
+        console.log(`Success: group added successfully ${event.target.result}`);
         resolve(event.target.result);
       };
 
@@ -35,9 +37,9 @@ export class DroneDalService{
       };
     });
   }
-  selectAll(): Promise<Drone[]> {
+  selectAll(): Promise<Group[]> {
     return new Promise((resolve, reject) => {
-      const transaction = this.database.db.transaction(["drones"]); //readonly
+      const transaction = this.database.db.transaction(["events"]); //readonly
 
       transaction.oncomplete = (event: any) => {
         console.log("Success: selectAll transaction successful");
@@ -46,7 +48,7 @@ export class DroneDalService{
         console.log("Error: error in selectAll transaction: " + event);
       };
 
-      const dronesStore = transaction.objectStore("drones");
+      const dronesStore = transaction.objectStore("events");
 
       const req = dronesStore.getAll();
       req.onsuccess = (event: any) => {
@@ -62,7 +64,7 @@ export class DroneDalService{
   }
   select(id: number): Promise<any> {
     return new Promise((resolve, reject) => {
-      const transaction = this.database.db.transaction(["drones"]); //readonly
+      const transaction = this.database.db.transaction(["events"]); //readonly
       transaction.oncomplete = (event: any) => {
         console.log("Success: select transaction successful");
       };
@@ -70,7 +72,7 @@ export class DroneDalService{
         console.log("Error: error in select transaction: " + event);
       };
 
-      const dronesStore = transaction.objectStore("drones");
+      const dronesStore = transaction.objectStore("events");
 
       const req = dronesStore.get(id);
       req.onsuccess = (event: any) => {
@@ -83,9 +85,9 @@ export class DroneDalService{
     });
   }
 
-  update(drone: Drone): Promise<any> {
+  update(group: Group): Promise<any> {
     return new Promise((resolve, reject) => {
-      const transaction = this.database.db.transaction(["drones"], "readwrite");
+      const transaction = this.database.db.transaction(["events"], "readwrite");
 
       transaction.oncomplete = (event: any) => {
         console.log("Success: update transaction successful");
@@ -94,9 +96,9 @@ export class DroneDalService{
         console.log("Error: error in update transaction: " + event);
       };
 
-      const dronesList = transaction.objectStore("drones");
+      const groupStore = transaction.objectStore("events");
 
-      const reqUpdate = dronesList.put(drone);
+      const reqUpdate = groupStore.put(group);
 
       reqUpdate.onsuccess = (event: any) => {
         console.log(`Success: data updated successfully: ${event}`);
@@ -109,9 +111,9 @@ export class DroneDalService{
       };
     });
   }
-  delete(drone: Drone): Promise<any> {
+  delete(group: Group): Promise<any> {
     return new Promise((resolve, reject) => {
-      const transaction = this.database.db.transaction(["drones"], "readwrite");
+      const transaction = this.database.db.transaction(["events"], "readwrite");
 
       transaction.oncomplete = (event: any) => {
         console.log("Success: delete transaction successful");
@@ -120,9 +122,9 @@ export class DroneDalService{
         console.log("Error: error in delete transaction: " + event);
       };
 
-      const dronesList = transaction.objectStore("drones");
-      if (drone.id) {
-        const reqDelete = dronesList.delete(drone.id);
+      const groupStore = transaction.objectStore("events");
+      if (group.id) {
+        const reqDelete = groupStore.delete(group.id);
         reqDelete.onsuccess = (event: any) => {
           console.log(`Success: data deleted successfully: ${event}`);
           resolve(event);
@@ -133,7 +135,7 @@ export class DroneDalService{
         };
       }
       else{
-        reject("drone does not have id")
+        reject("group does not have id")
       }
     });
   }

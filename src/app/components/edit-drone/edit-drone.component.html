@@ -85,7 +85,7 @@
 
       <!-- Add a drone photo -->
       <p class="addPhotoText"><b>Modify a Drone Photo</b></p>
-      <app-camera></app-camera>
+      <app-camera formControlName="droneImage"></app-camera>
 
       <button [disabled]="!modifyDroneForm.valid" type="submit" id="btnModify" class="btn btn-dark form-control" (click)="onModifyClick()">Modify</button>
       <button  type="submit" id="btnDelete" class="btn btn-danger form-control" (click)="onDeleteClick()">Delete</button>

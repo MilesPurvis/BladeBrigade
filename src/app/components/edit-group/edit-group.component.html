@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="card-header "><h2><i class="bi bi-calendar-event"></i> Create New Group/Event</h2>
+  <div class="card-header "><h2><i class="bi bi-calendar-event"></i> Update the {{group.name}}</h2>
     <form #eventForm="ngForm">
       <h6>Organizer info</h6>
       <!--Name-->
@@ -81,7 +81,7 @@
         <small class="opacity-75 ">Capacity: {{ group.size - group.droneArray.length }}</small>
       </div>
 
-
+      <!-- Drones added in the event -->
       @for (drone of addedDrones; track $index) {
         <div class="list-group-item list-group-item-action d-flex gap-3 py-1">
           <div class="d-flex gap-2 w-100 justify-content-between">
@@ -197,8 +197,8 @@
 
               } @else {
                 <div  >
-                <p >No suitable zones   <small><a class="btn-primary btn btn-sm rounded-pill" routerLink="/addZones" u>Create Zone<i
-                  class="bi bi-plus-lg"></i></a></small></p>
+                  <p >No suitable zones   <small><a class="btn-primary btn btn-sm rounded-pill" routerLink="/addZones" u>Create Zone<i
+                    class="bi bi-plus-lg"></i></a></small></p>
 
                 </div>
               }
@@ -213,10 +213,11 @@
       </div>
 
       <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block mt-2" (click)="addEventClick()"
+        <button type="submit" class="btn btn-primary btn-block mt-2" (click)="updateEventClick()"
                 [disabled]="eventForm.invalid || group.date.toString() == inValid || group.droneArray.length <= 0 || group.eventZone.address == empty">
-          Create Group/Event
+          Update Group/Event
         </button>
+        <button type="submit" class="btn btn-block mt-2 btn-danger" (click)="deleteEventClick()">Delete Group/Event</button>
       </div>
 
 
