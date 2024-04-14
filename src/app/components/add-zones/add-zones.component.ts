@@ -30,7 +30,9 @@ export class AddZonesComponent {
   MAX_DRONES:number =10;
   MIN_DRONES:number =1;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    this.geoService.getCurrentLocation()
+  }
 
   onAddClick() {
     this.dal.insert(this.zone).then((data) => {
@@ -61,6 +63,7 @@ export class AddZonesComponent {
 
       this.zone.address = data;
     }).catch(err => {
+      this.error = err;
     })
   }
 
