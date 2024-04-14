@@ -1,3 +1,10 @@
+/*
+Project: Blade Brigade - Final Project
+    Miles Purvis & Stefan Kobetich
+
+    Revision History:
+      Created 2024-03-31
+*/
 import {Component, inject} from '@angular/core';
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {Group} from "../../models/group.model";
