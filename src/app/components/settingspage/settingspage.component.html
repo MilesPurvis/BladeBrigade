@@ -1,30 +1,30 @@
 <div class="container">
 
-    <div>
-      <div class="row text-center">
-        <h1>Options</h1>
+    <div >
+      <div class="row text-center bg-light p-4 shadow-sm rounded-2 m-1">
+        <h1><i class="bi bi-gear-wide-connected"></i> Options</h1>
 
-        <div class="col-5">
-          <h3>Database Actions</h3>
-          <div class="btn-group mb-4">
-            <a (click)="CreateDBFunction()" class="btn btn-primary btn-sm ">Create Database</a>
-            <a (click)="DeleteDBFunction()" class="btn btn-outline-secondary btn-sm ">Delete Database</a>
-          </div>
+        <div class="col-5 mb-4 d-flex flex-column gap-1">
+
+          <h4>Database Actions</h4>
+
+            <a (click)="CreateDBFunction()" class="btn btn-success btn-light text-secondary shadow-sm btn-sm "><i class="bi bi-database-fill-add"></i> Create Database</a>
+            <a (click)="DeleteDBFunction()" class="btn text-danger btn-light btn-sm shadow-sm"><i class="bi bi-trash3"></i> Delete Database</a>
+
 
         </div>
-        <div class="col-7">
-          <h3>Create Tables</h3>
-          <a (click)="CreateAllTablesDBFunction()" class="btn btn-primary btn-sm ">Create all tables</a>
-          <br>
-          <a (click)="CreateDroneTableDBFunction()" class="btn btn-outline-secondary btn-sm btn-settings">Create drone table</a>
-          <a (click)="CreateZoneTableDBFunction()" class="btn btn-outline-secondary btn-sm btn-settings">Create zone table</a>
-          <a (click)="CreateGroupTableDBFunction()" class="btn btn-outline-secondary btn-sm btn-settings">Create event table</a>
+        <div class="col-7 d-flex flex-column gap-1 ">
+          <h4>Create Datastore</h4>
+          <a (click)="CreateAllTablesDBFunction()" class="btn btn-light text-primary btn-sm shadow-sm"><i class="bi bi-database-fill-up"></i> All</a>
+          <a (click)="CreateDroneTableDBFunction()" class="btn btn-success btn-light text-secondary shadow-sm btn-sm"><i class="bi bi-database-fill-up"></i> Seed Drones</a>
+          <a (click)="CreateZoneTableDBFunction()" class="btn btn-success btn-light text-secondary shadow-sm btn-sm"> <i class="bi bi-database-fill-up"></i> Seed Zones</a>
+          <a (click)="CreateGroupTableDBFunction()" class="btn btn-success btn-light text-secondary shadow-sm btn-sm"><i class="bi bi-database-fill-up"></i> Seed Groups</a>
         </div>
       </div>
 
-      <hr>
 
-      <h2>About Drones</h2>
+
+      <h2 class="mt-4"><i class="bi bi-info-circle text-primary"></i> About Blade Brigade </h2>
       <hr>
       <p>Here at Blade Brigade, we love drones! But what do we also love? Teaching and maintaining good drone
         operator practices. Operating a drone is very fun, but is no joke. By following the simple steps below,
