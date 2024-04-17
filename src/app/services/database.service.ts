@@ -34,13 +34,13 @@ export class DatabaseService {
   }
   CreateGroupTable(){
     const groups = [
-      {name: "Fun Flying at the park", email: "droneemail@gmail.com", description: "Fun filled flying mixed with races, competitions, and drone info",
+      {name: "Steve Smith", email: "droneemail@gmail.com", description: "Fun filled flying mixed with races & competitions",
         size: 4, date: "2024-07-25", droneArray: [
           { droneBrand: "The Drone Company", droneModel: "Drono II", droneName: "The flying fortress", droneColor: "Multicolored", droneWeight: 458, pilotCert: true, customModified: true, droneImage: null},
           { droneBrand: "DJI", droneModel: "Mini 2 SE", droneName: "DJ DRONE", droneColor: "White", droneWeight: 249, pilotCert: false, customModified: false, droneImage: null}
         ], eventZone: { address: "57 Metcalfe St, Toronto, ON M4X 1R9, Canada", radius: 1000, maxDrones: 5},
       },
-      {name: "Drone Obstacle challenges Event", email: "droneflying2@gmail.com", description: "Are you willing to compete in the ultimate drone championship? If so look no father, we have it right here!",
+      {name: "James Taiclet", email: "droneflying2@gmail.com", description: "5th Annual Drone Championship",
         size: 4, date: "2025-06-04", droneArray: [
           { droneBrand: "The Drone Company", droneModel: "Drono II", droneName: "The flying fortress", droneColor: "Multicolored", droneWeight: 458, pilotCert: true, customModified: true, droneImage: null},
           { droneBrand: "DJI", droneModel: "Mini 2 SE", droneName: "DJ DRONE", droneColor: "White", droneWeight: 249, pilotCert: false, customModified: false, droneImage: null},
